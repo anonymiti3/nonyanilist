@@ -1,0 +1,801 @@
+/*------------------------ Anonymity’s  CSS BEGIN ------------------------*/
+
+/* Credit to @voidnyan @mentor404 @Anzu for essentially all of the code that follows*/
+
+/* Credit as well to @pseudo whom I used some code as a basis*/
+
+@import url("https://voidnyan.github.io/anilist-css/css/social.css");
+@import url("https://anzuftnw.github.io/files/simple-theme-framework.css");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*--- anilist logo recolour --- */
+.logo {
+    content: url("https://imgur.com/ojRrgD3.png");
+}
+
+/*--- profile picture --- */
+:root {
+    --avatar-url: url(https://imgur.com/SfXquFv.png);
+}
+/*--- custom font ---*/
+
+*.overview,
+.stats-wrap,
+.nav,
+.lists,
+.filters,
+.user-follow,
+.user-reviews,
+.filter-group,
+.el-input__inner,
+.el-textarea__inner,
+.el-scrollbar,
+.el-tooltip__popper,
+.tooltip .content,
+.user-follow > .name,
+.section-header,
+.banner-content,
+.option,
+.content > .user-social,
+.content .submissions,
+.el-dropdown-menu.el-popper.el-dropdown-menu--small,
+.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium,
+.container > .activity-entry .wrap,
+.container > .activity-entry .reply,
+.el-dialog__body .title,
+.el-dialog__body .save-btn,
+.el-dialog__body .input-title,
+*.el-picker-panel.el-date-picker.el-popper,
+*.quick-search.visible,
+.primary-links,
+.footer,
+#nav.nav .links,
+*.el-message-box,
+.el-button.el-button--default.el-button--small,
+.el-button.el-button--default.el-button--small.el-button--primary,
+.delete-btn,
+*.checkbox-wrap,
+.hohButton,
+.activity-feed .time,
+.el-select__input,
+.content.container > div > div:nth-child(1) > div:nth-child(2) > h2,
+.button[data-v-c574a71c],
+* {
+    font-family: "Raleway", serif;
+}
+
+/*--- big banner ---*/
+.banner {
+    height: calc(100vh - 46px) !important;
+    background: var(--banner-url) !important;
+    background-position: 50% 50% !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    transition: height 0.8s ease-in-out;
+}
+
+/*--- container ----*/
+.header-wrap > .nav-wrap {
+    max-width: 1140px !important;
+    margin: 0 auto;
+    border-radius: var(--brt);
+    position: relative;
+}
+.content.container {
+    background: rgba(20, 20, 20, 0.35) !important;
+    padding: var(--pdh);
+    border-radius: var(--brb);
+}
+.content.container:not(:has(.el-dialog__wrapper)) {
+    backdrop-filter: blur(6px);
+}
+.content > .overview,
+.content > .medialist,
+.favourites,
+.content > .stats,
+.content > .user-social,
+.content .review-wrap,
+.content .submissions {
+    margin-top: 0 !important;
+}
+
+/*--- search bar--- */
+
+.nav .wrap .search {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    padding: 5px;
+    background-color: #141414;
+    border-radius: 35px;
+    width: 65%;
+    cursor: text;
+    font-family: "Raleway", serif;
+}
+
+.nav .wrap .search:after {
+    content: "Search AniList";
+    margin-left: 10px;
+    color: rgb(237, 241, 245);
+}
+
+/*--- lowercase styling ---*/
+.details,
+.stats-wrap,
+.nav,
+.action.has-label,
+.stats > .title,
+.filters,
+.section-header,
+.title > :not(.notes),
+.list-head>div,
+.score,
+.progress,
+.status,
+.format,
+.genres,
+.el-input__inner,
+.el-scrollbar,
+.heading.score,
+.switch,
+.favourites-wrap,
+.read-review,
+.content > .header,
+.follower-badge,
+.action.has-label.active,
+.nav-btn:not(.nav-btn.donator-badge),
+.el-tooltip__popper,
+.pie-chart.vertical-layout > .title,
+.options > .option,
+.tooltip .content,
+textarea::placeholder,
+.el-dropdown-menu.el-popper.el-dropdown-menu--small,
+.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium,
+.el-dialog__body .title,
+.el-dialog__body .save-btn,
+.el-dialog__body .input-title,
+*.el-picker-panel.el-date-picker.el-popper,
+.quick-search input[placeholder="Search AniList"],
+.result-col > .title,
+.embed,
+.primary-links,
+.footer,
+.void-button.void-self-message,
+.void-toast,
+#nav.nav .links,
+*.el-message-box,
+.el-button.el-button--default.el-button--small,
+.el-button.el-button--default.el-button--small.el-button--primary,
+.delete-btn,
+*.checkbox-wrap,
+.stats .title,
+.filter-group span,
+.load-more,
+.rules-notice,
+.hohButton,
+.submissions,
+.actions:not(.banner-content .actions) {
+    text-transform: lowercase !important;
+}
+
+/*--- global color ---*/
+body,
+.site-theme-dark,
+.site-theme-contrast,
+:root {
+    --color-overlay: 20, 20, 20;
+}
+.el-tooltip__popper {
+    background: rgb(20, 20, 20) !important;
+}
+.el-tooltip__popper[x-placement^="top"] .popper__arrow,
+.el-tooltip__popper[x-placement^="top"] .popper__arrow::after {
+    border-top-color: rgb(20, 20, 20) !important;
+}
+.el-tooltip__popper[x-placement^="bottom"] .popper__arrow,
+.el-tooltip__popper[x-placement^="bottom"] .popper__arrow::after {
+    border-bottom-color: rgb(20, 20, 20) !important;
+}
+
+/*--- navbar animation and renaming ---*/
+.nav > .link {
+    position: relative;
+}
+.nav > .link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: 2px;
+    width: 0;
+    background: rgb(var(--color-blue));
+    transition: 0.2s ease-in-out;
+}
+.nav > .router-link-active::after {
+    left: 0;
+    width: 100%;
+    background: rgb(var(--color-blue));
+}
+.nav > .link:hover::after {
+    left: 0;
+    width: 100%;
+    background: rgb(var(--color-blue));
+}
+.nav-wrap :is(
+a[href*="/animelist"],
+a[href*="/mangalist"],
+a[href$="/anonymity/"]
+) {
+    visibility: hidden;
+    position: relative;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.nav-wrap :is(
+a[href*="/animelist"],
+a[href*="/mangalist"],
+a[href$="/anonymity/"]
+)::after {
+    visibility: visible;
+}
+.nav-wrap :is(
+a[href*="/animelist"],
+a[href*="/mangalist"],
+a[href$="/anonymity/"]
+)::before {
+    text-align: center;
+    display: inline-block;
+    left: 0;
+    width: 100%;
+    visibility: visible;
+    position: absolute;
+}
+.nav-wrap a[href*="/animelist"]::before {
+    content: "anime";
+}
+.nav-wrap a[href*="/mangalist"]::before {
+    content: "manga";
+}
+.nav-wrap a[href$="/anonymity/"]::before {
+    content: "home";
+}
+.nav-wrap a {
+    background: unset !important
+}
+
+/*--- stats —*/
+
+@media (max-width: 1540px) {
+    .stats-wrap {
+        grid-template-columns: 1fr;
+        grid-column-gap: 0;
+        gap: 28px;
+    }
+}
+
+.list-stats.content-wrap:hover {
+    height: 100%;
+    max-height: calc(100% + 35px);
+}
+
+.list-stats.content-wrap:hover .footer {
+    opacity: 100%;
+}
+
+.list-stats.content-wrap {
+    height: calc(160.5px - 35px);
+    transition: all 1s;
+    margin-bottom: 0px !important;
+}
+
+.stats-wrap .footer {
+    opacity: 0%;
+    transition: all 1s;
+    height: 35px;
+}
+
+.milestones .milestone:after {
+    padding-top: 0px !important;
+}
+
+.stats-wrap .footer .milestones {
+    height: 25px;
+    padding: 5px 0px;
+}
+
+.stats-wrap .stat:first-child .value {
+    font-size: 5rem;
+}
+
+.stats-wrap .stat:first-child .label {
+    font-size: 1em;
+}
+
+.stats-wrap > .list-stats > .stats-wrap {
+    grid-auto-flow: inherit;
+    align-items: center;
+    row-gap: 1.2rem;
+    grid-template-areas: "a b" "a c";
+}
+
+.stats-wrap .stat:nth-child(1) {
+    grid-area: a;
+}
+
+.stats-wrap .stat:nth-child(2) {
+    grid-area: b;
+}
+.stats-wrap .stat:nth-child(3) {
+    grid-area: c;
+}
+.activity-feed-wrap, .activity-feed-wrap + div {
+    margin-top: 25px;
+}
+
+/*--- donator follow buttons transparency ---*/
+.donator-badge:not(.donator-badge.rainbow) {
+    animation-duration: unset !important;
+    background-color: rgba(var(--color-blue), 0.6) !important;
+}
+.follower-badge,
+.nav-btn {
+    background-color: rgba(var(--color-blue), 0.6) !important;
+}
+
+/*--- profile width ---*/
+
+.container {
+    max-width: 1240px !important;
+    padding-left: 75px !important;
+    padding-right: 75px !important;
+}
+.genres .genre:last-child {
+    display: none !important;
+}
+.history-day:nth-of-type(-n + 21) {
+    display: none;
+}
+.activity-entry:has(.small) {
+    grid-column-start: 1 !important;
+    grid-column-end: 3 !important;
+}
+.section > .stats-wrap {
+    grid-template-columns: 1fr !important;
+    grid-column-gap: 0 !important;
+}
+.stat-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+.stat-cards.has-images {
+    grid-template-columns: 1fr !important;
+    max-width: 700px !important;
+}
+.highlights {
+    display: grid !important;
+    grid-gap: 40px 30px !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    margin-left: 5% !important;
+    width: 90% !important;
+}
+
+/*--- width adjustment ---*/
+
+.section:first-child {
+    position: relative;
+    width: 428px !important;
+    right: 25px !important;
+}
+.section:last-child {
+    position: relative;
+    right: 40px !important;
+    width: 664px !important;
+}
+.nav .link[data-v-1cc2919e] {
+    margin: 0 15px;
+}
+/*--- favourites —*/
+
+.overview div.favourites:nth-child(6) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+/*--- Other ---*/
+div.desktop:nth-child(3) {
+    display: none;
+}
+.nav-wrap a.link:nth-child(8) {
+    display: none;
+}
+#nav.nav {
+    background-color: rgba(20, 20, 20, 1) !important;
+    transition: all 0s ease 0s, top 0.5s ease 0s !important;
+    left: calc((100% - 1240px) / 2);
+    width: 1240px;
+    border-radius: 0 0 10px 10px !important;
+}
+.tooltip .title {
+    text-transform: lowercase;
+}
+.tooltip .content:has(.circle) {
+    display: block;
+    text-transform: lowercase;
+}
+.review-card .header {
+    font-weight: bold !important;
+}
+.banner-content .actions > :not(.follower-badge, .nav-btn, .donator-badge) {
+    display: none;
+}
+body:has(.content > .overview, .favourites .favourites) .tooltip .content {
+    display: none;
+}
+.tooltip .title {
+    text-transform: lowercase;
+}
+body:has(.content > .overview, .favourites .favourites) .tooltip .content:has(.circle) {
+    display: block;
+    text-transform: lowercase;
+}
+.users {
+    background: rgba(10, 10, 10, 0.35) !important;
+}
+.follow-card {
+    background: unset !important;
+}
+.name-wrapper > .name {
+    text-shadow: 1px 1px 4px black;
+}
+.banner-content > .avatar {
+    max-width: 230px !important;
+    max-height: 230px !important;
+    content: var(--avatar-url);
+    /* PFP Default width and height values are 230px */
+}
+.tooltip .title, .favourites .favourites > .tooltip .title {
+    padding-right: 12px !important;
+}
+.details .title {
+    font-weight: 600;
+}
+.home .activity-feed-wrap .section-header .el-dropdown-menu__item, .user .activity-feed-wrap .section-header .el-dropdown-menu__item {
+    background: none !important;
+}
+.overview .section:first-child .section-header {
+    text-align: center;
+    justify-content: center;
+    font-family: "Raleway", serif;
+    font-style: italic;
+}
+.favourites.preview .favourites-wrap.studios[data-v-ddf96a3c] {
+    text-align: center;
+    margin-top: -5px;
+}
+
+.favourites .favourites .section-header {
+    visibility: hidden;
+}
+
+.favourites.preview .favourites-wrap:not(.favourites.preview .favourites-wrap.studios) {
+    display: grid !important;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(115px, auto);
+    padding: 0 !important;
+    margin-bottom: 35px !important;
+    background: unset !important;
+}
+
+.favourites.preview .favourites-wrap a.favourite:not(.favourites.preview .favourites-wrap.studios a.favourite) {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 60px;
+}
+
+.favourites.preview .favourites-wrap.studios {
+    background: unset !important;
+}
+
+.overview div.favourites:nth-child(3) > h2:nth-child(1), .favourites .favourites:nth-child(1) .section-header, .favourites .favourites:nth-child(2) .section-header, .favourites .favourites:nth-child(3) .section-header, .favourites .favourites:nth-child(4) .section-header, .favourites .favourites:nth-child(5) .section-header {
+    position: relative !important;
+    visibility: hidden !important;
+}
+.overview div.favourites:nth-child(4) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(4) > h2:nth-child(1)::after, .favourites .favourites:nth-child(1) .section-header::after {
+    content: "anime";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+}
+.overview div.favourites:nth-child(5) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(5) > h2:nth-child(1)::after, .favourites .favourites:nth-child(2) .section-header::after {
+    content: "manga";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+}
+.overview div.favourites:nth-child(6) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(6) > h2:nth-child(1)::after, .favourites .favourites:nth-child(3) .section-header::after {
+    content: "characters";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+}
+.overview div.favourites:nth-child(7) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(7) > h2:nth-child(1)::after, .favourites .favourites:nth-child(4) .section-header::after {
+    content: "staff";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+}
+.overview div.favourites:nth-child(8) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(8) > h2:nth-child(1)::after, .favourites .favourites:nth-child(5) .section-header::after {
+    content: "studios";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+}
+
+/* miscellaneous stylization */
+.body,
+.activity-feed .details .hohScore {
+    background: rgba(20, 20, 20, 0.6) !important;
+}
+.markdown-editor,
+.el-textarea textarea,
+.list-section,
+.lists .theme-switch,
+.filter-group .active,
+.filters-wrap input,
+.el-slider__runway,
+.load-more,
+.favourites .favourites .favourites-wrap,
+.overview .favourites .favourites-wrap,
+.stats .circle,
+.stats .switch,
+.stats .bar-chart-wrap,
+.stats .pie-chart,
+.stats .line-chart-wrap,
+.filter-group .router-link-active,
+.ps-container.horizontal-scroller,
+.stats .stat-card,
+.hohTable,
+.hohTable .header,
+.hohThemeSwitch,
+.review-card,
+.el-input__inner,
+.genre-overview.content-wrap,
+.activity-history.content-wrap,
+.content-wrap,
+.footer,
+.activity-feed-wrap .wrap,
+.activity-feed-wrap .reply,
+.el-input,
+.comment-wrap.depth-0.even,
+.thread-card,
+.activity-feed-wrap blockquote,
+.comment blockquote,
+.markdown-spoiler::before,
+.markdown-spoiler.spoiler-visible span,
+.embed,
+.container > .activity-entry blockquote,
+.input,
+.stats-wrap .progress,
+.hohActive,
+.submissions-page .submission {
+    background: rgba(10, 10, 10, 0.55) !important;
+}
+.nav-wrap {
+    background: rgba(10, 10, 10, 0.85) !important;
+    backdrop-filter: blur(6px);
+}
+.container > .activity-entry .wrap,
+.container > .activity-entry .reply,
+.container > .activity-entry .markdown-editor,
+.container > .activity-entry .el-textarea__inner {
+    background: rgba(10, 10, 10, 0.65) !important;
+}
+.container > .activity-entry .wrap:not(:has(.el-dialog__wrapper)),
+.container > .activity-entry .reply:not(:has(.el-dialog__wrapper)),
+.container > .activity-entry .markdown-editor:not(:has(.el-dialog__wrapper)),
+.container > .activity-entry .el-textarea__inner:not(:has(.el-dialog__wrapper)) {
+    backdrop-filter: blur(6px);
+}
+.el-dialog__wrapper,
+.el-dialog__body {
+    backdrop-filter: blur(8px) !important;
+}
+.el-dropdown-menu.el-popper.el-dropdown-menu--small,
+.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium,
+.result-col {
+    background: rgba(20, 20, 20, 0.9) !important;
+}
+.el-dropdown-menu.el-popper.el-dropdown-menu--small .el-dropdown-menu__item:hover,
+.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium .el-dropdown-menu__item:hover,
+.result:hover {
+    background: rgba(70, 70, 70, 0.3) !important;
+    transition: 0.2s ease-in-out;
+}
+.el-dropdown-menu[x-placement^="top"] .popper__arrow {
+    border-top-color: rgb(20, 20, 20, 0.8) !important;
+}
+.el-dropdown-menu[x-placement^="bottom"] .popper__arrow {
+    border-bottom-color: rgb(20, 20, 20, 0.8) !important;
+}
+.el-dropdown-menu[x-placement^="top"] .popper__arrow::after,
+.el-dropdown-menu[x-placement^="bottom"] .popper__arrow::after {
+    visibility: hidden !important;
+}
+.el-dialog__body,
+.el-message-box {
+    background: rgba(25, 25, 25, 0.9) !important;
+}
+.ps-container.horizontal-scroller .area {
+    fill: rgba(var(--color-blue), 0.85) !important;
+}
+.stats .x-axis,
+.pie-chart .pie-chart,
+.stats .stat-card .relations-wrap,
+.el-dropdown-menu.el-popper.el-dropdown-menu--small .el-dropdown-menu__item,
+.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium .el-dropdown-menu__item,
+.el-textarea,
+.activity-feed .time,
+.container .time,
+.thread-card > .footer,
+.list-section .progress,
+div.filter-group
+div.el-select.format.el-select--small
+div.el-select__tags
+input.el-select__input.is-small {
+    background: unset !important;
+}
+.button.cancel, el-tooltip.el-slider__button {
+    background: rgb(20, 20, 20) !important;
+}
+.el-select-dropdown, .el-dropdown-menu:not(h2 ul), .el-dropdown-menu__item:not(h2 li) {
+    background: rgba(20, 20, 20) !important;
+}
+.el-select-dropdown.el-popper, .el-picker-panel.el-date-picker.el-popper {
+    background-color: rgba(10, 10, 10, 0.8) !important;
+    backdrop-filter: blur(6px);
+}
+.el-select-dropdown__item.hover {
+    background: rgba(40, 40, 40, 0.5) !important;
+}
+.el-dropdown-menu__item.el-dropdown-menu__item--divided::before {
+    display: none !important;
+}
+.el-picker-panel.el-date-picker.el-popper {
+    border-color: rgba(0,0,0,0) !important;
+    background: rgba(20, 20, 20, 0.9) !important;
+}
+body {
+    background-color: black;
+}
+.quick-search > .name {
+    text-transform: initial !important;
+}
+
+/*---  colour styling ---*/
+body,
+.site-theme-dark,
+.site-theme-contrast,
+:root {
+    --color-text: 255, 255, 255;
+    /* plain text, header, statswrap progressbar number indicators */
+    --color-text-light: 255, 255, 255;
+    /* genre and statswrap text, secondary navbar links */
+    --color-text-lighter: 255, 255, 255;
+    /* filter text, time stamp text and icons */
+    --color-foreground-grey-dark: 10, 10, 10, 0.6 !important;
+    /* statswrap progress bar background, activity history empty field background */
+    --color-nav-transparent-background: 20, 20, 20, 0.675;
+    --color-nav-text-hover: 255, 255, 255;
+    /* top navbar text on hover */
+    --color-nav-transparent-text: 255, 255, 255;
+    /* top navbar text in transparent state */
+    --color-shadow-blue: 40, 40, 40;
+    --color-background-100: 20, 20, 20, 0.95;
+    --color-background-200: 20, 20, 20, 0.4;
+    --color-gray-100: 20, 20, 20, 0.95;
+    --color-gray-600: 255, 255, 255;
+    /* navdropdown secondary text and icons */
+    --color-gray-700: 255, 255, 255;
+    /* navdropdown footer text and icons */
+    --color-gray-800: 200, 200, 200;
+    /* navdropdown primary text, text and icon hover */
+    --color-gray-900: 200, 200, 200;
+    /* navdropdown footer text and icon hover */
+    --color-nav-transparent-text: 255, 255, 255;
+    /* top navbar text in transparent state */
+    --color-nav-text-hover: 200, 200, 200;
+    /* top navbar text on hover */
+}
+
+/*--- container shading and profile background ---*/
+:root,
+.site-theme-dark,
+.site-theme-contrast {
+    --border-radius: 10px;
+    /* global border radius */
+    --padding-v: 30px;
+    /* vertical content padding */
+    --padding-h: 30px;
+    /* horizontal content padding */
+    --brt: var(--border-radius) var(--border-radius) 0 0;
+    --brb: 0 0 var(--border-radius) var(--border-radius);
+    --pdh: var(--padding-v) var(--padding-h);
+}
+
+/*--- profile banner ---*/
+/* default position value is 50%*/
+body {
+    background-image: url("https://imgur.com/S7uyGKY.jpeg");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/*--- banner ---*/
+.banner {
+    visibility: hidden;
+}
+.banner > .container {
+    visibility: visible;
+    justify-content: center;
+}
+.review-card > .banner {
+    visibility: visible !important;
+}
+
+/*--- container ---*/
+.header-wrap > .nav-wrap {
+    max-width: 1240px !important;
+    margin: 0 auto;
+    border-radius: var(--brt);
+    position: relative;
+}
+.content.container {
+    background: rgba(20, 20, 20, 0.35) !important;
+    padding: var(--pdh);
+    border-radius: var(--brb);
+}
+.content.container:not(:has(.el-dialog__wrapper)) {
+    backdrop-filter: blur(6px);
+}
+.content > .overview,
+.content > .medialist,
+.favourites,
+.content > .stats,
+.content > .user-social,
+.content .review-wrap,
+.content .submissions {
+    margin-top: 0 !important;
+}
+
+/*--- Hide Footer ---*/
+#app > div > .footer {
+    display: none;
+}
