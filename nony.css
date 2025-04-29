@@ -4,80 +4,185 @@
 
 /* Credit as well to @pseudo whom I used some code as a basis*/
 
+/*════════════════════════════════════════════
+  Imports
+════════════════════════════════════════════*/
+/* Standard Dependencies */
 @import url("https://voidnyan.github.io/anilist-css/css/social.css");
-@import url("https://anzuftnw.github.io/files/simple-theme-framework.css");
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
-/*--- anilist logo recolour --- */
-.logo {
-    content: url("https://imgur.com/ojRrgD3.png");
-}
-
-/*--- profile picture --- */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+/* Font */
+@import url("https://anzuftnw.github.io/files/simple-theme-framework.css"); /* Dependencies from @pseudo's Layout (Credit: @pseudo) */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@import url("https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/imports/lowercase-styling-1.0.css");
+@import url("https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/imports/barebones-theme-framework-1.0.css");
+@import url("https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/imports/automail-uniformity-styling-1.0.css)";
+@import url("https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/imports/border-radius-styling-1.0.6.css");
+@import url("https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/imports/favourites-background-change-1.0.css");
+/*════════════════════════════════════════════
+  Variables
+════════════════════════════════════════════*/
 :root {
-    --avatar-url: url(https://imgur.com/SfXquFv.png);
+    --avatar-url: url(https://imgur.com/AaZFpH9.png);
+    /*  Avatar */
+    --banner-url: url(https://imgur.com/4sLf9q5.jpeg);
+    /* Default Banner */
+    /* Font Variable */
+    --font: "Lato", sans-serif;
+    --profile-color: #917AC2;
+    /* Profile Colour, HEX */
+    --profile-color-rgb: 145, 122, 194;
+    /* Profile Colour, RGB */
+    /* Variables from @pseudo's Layout */
+    /* Credit: @pseudo */
+    --search-text: "My parasol shall only be shared with Lord Phaethon.";
+    /* Searchbar Text */
+    --search-width: 670px;
+    /* Searchbar Width */
+    --search-width-hover: 720px;
+    /* Searchbar Width, Hover */
+    --border-radius: 15px;
+    /* global border radius */
+    --padding-v: 30px;
+    /* vertical content padding */
+    --padding-h: 30px;
+    /* horizontal content padding */
+    --brt: var(--border-radius) var(--border-radius) 0 0;
+    --brb: 0 0 var(--border-radius) var(--border-radius);
+    --pdh: var(--padding-v) var(--padding-h);
+    /*════ Colours and Transparencies ════*/
+    --container-background: rgba(20, 20, 20, 0.7);
+    /* Container Background. */
+    --global-nav-background: rgba(10, 10, 10, 0.8);
+    /* Global Navbar. */
+    --profile-nav-background: rgba(10, 10, 10, 0.9);
+    /* Profile Navbar. */
+    --foreground: rgba(10, 10, 10, 0.75);
+    /* Foreground Elements. */
+    --list-editor-foreground: rgba(20, 20, 20, 0.6);
+    /* List Editor. */
+    --direct-activity-foreground: rgba(10, 10, 10, 0.9);
+    /* Foreground for Direct Activities. */
+    --hoh-score-preview: rgba(20, 20, 20, 1);
+    /* Hoh's/Automail's score preview, if enabled. */
+    --quick-search-results: rgba(10, 10, 10, 0.8);
+    /* Results Columns in Quick Search. */
+    --activity-cover-arrow-dropdown: rgba(10, 10, 10, 0.95);
+    /* Arrow Dropdowns in List Activity Covers. */
+    --activity-cover-arrow-dropdown-hover: rgba(70, 70, 70, 0.3);
+    /* Aforementioned Dropdown when hovering options. */
+    --global-nav-dropdown: rgba(10, 10, 10, 0.85);
+    /* Global Navbar Dropdown. */
+    /*════ Blurs ════*/
+    --container-blur: blur(8px);
+    /* Container */
+    --popup-blur: blur(8px);
+    /* Popups like List/Activity Editing, Quick Search. */
+    --global-nav-blur: blur(6px);
+    /* Global Navbar.  */
+    --profile-nav-blur: blur(6px);
+    /* Profile Navbar. */
+    --direct-activity-foreground-blur: blur(6px);
+    /* Foreground for Direct Activities. */
+    /*════ Timings ════*/
+    --layout-delay: 12s;
+    /* How long favourite hover layout changes hold. */
+    --master-transition-timer: 0.175s;
+    /* Nearly ALL ease-in-out transitions. Notable exceptions include the "scroll" for the full banner upon profile load as well as the favourite grid hover expansion; I have different timings for those. */
+    --animation-timer-overview: 0.8s;
+    /* Overview load. */
+    --animation-timer-activityfeed: 0.6s;
+    /* Activity Feed. */
+    --animation-timer-favourites: 1.8s;
+    /* Overview favourites. */
+    --animation-timer-likes: 0.4s;
+    /* Likes on hover. */
+    --animation-timer-comments: 0.45s;
+    /* Reply load. */
+    --animation-timer-commentcontents: 0.6s;
+    /* Reply content. */
+    --animation-timer-replypreview: 0.3s;
+    /* Reply previews. */
+    --animation-timer-edit: 0.35s;
+    /* Editing windows, like activities or list media. */
+    --animation-timer-medialist: 1s;
+    /* Anime and Manga lists load. */
+    --animation-timer-load: 0.8s;
+    /* All loads to the right of the media lists. */
 }
-/*--- custom font ---*/
 
-*.overview,
-.stats-wrap,
-.nav,
-.lists,
-.filters,
-.user-follow,
-.user-reviews,
-.filter-group,
-.el-input__inner,
-.el-textarea__inner,
-.el-scrollbar,
-.el-tooltip__popper,
-.tooltip .content,
-.user-follow > .name,
-.section-header,
-.banner-content,
-.option,
-.content > .user-social,
-.content .submissions,
-.el-dropdown-menu.el-popper.el-dropdown-menu--small,
-.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium,
-.container > .activity-entry .wrap,
-.container > .activity-entry .reply,
-.el-dialog__body .title,
-.el-dialog__body .save-btn,
-.el-dialog__body .input-title,
-*.el-picker-panel.el-date-picker.el-popper,
-*.quick-search.visible,
-.primary-links,
-.footer,
-#nav.nav .links,
-*.el-message-box,
-.el-button.el-button--default.el-button--small,
-.el-button.el-button--default.el-button--small.el-button--primary,
-.delete-btn,
-*.checkbox-wrap,
-.hohButton,
-.activity-feed .time,
-.el-select__input,
-.content.container > div > div:nth-child(1) > div:nth-child(2) > h2,
-.button[data-v-c574a71c],
-* {
-    font-family: "Raleway", serif;
+/*════════════════════════════════════════════
+  Global Styling & Resets
+════════════════════════════════════════════*/
+/*--- anilist logo --- */
+/* Credit: @anonymity - */
+
+.logo {
+    content: url("https://imgur.com/If5Anwf.gif");
 }
 
-/*--- big banner ---*/
+/*--- avatar ---*/
+.banner .avatar {
+    width: 0 !important;
+    height: 0 !important;
+    padding: 243px !important;
+    background: var(--avatar-url);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+/*--- Global Font & Base Styling ---*/
+*.overview, .stats-wrap, .nav, .lists, .filters, .user-follow, .user-reviews, .filter-group, .el-input__inner, .el-textarea__inner, .el-scrollbar, .el-tooltip__popper, .tooltip .content, /* .user-follow > .name, */
+.section-header, .banner-content, .option, .content > .user-social, .content .submissions, .el-dropdown-menu.el-popper.el-dropdown-menu--small, .el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium, .container > .activity-entry .wrap, .container > .activity-entry .reply, .el-dialog__body .title, .el-dialog__body .save-btn, .el-dialog__body .input-title, *.el-picker-panel.el-date-picker.el-popper, *.quick-search.visible, .has-label[data-v-04d66030]:before, .primary-links, /* .footer, */
+#nav.nav .links, *.el-message-box, .el-button.el-button--default.el-button--small, .el-button.el-button--default.el-button--small.el-button--primary, .load-more, .delete-btn, .hohButton, *.checkbox-wrap, .activity-feed .time, .el-select__input, .content.container > div > div:nth-child(1) > div:nth-child(2) > h2, .button[data-v-c574a71c], .donator-badge:not(.donator-badge.rainbow), * {
+    font-family: var(--font) !important;
+    /* Use font variable from var */
+    font-weight: 700;
+    /* Default bold weight */
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.15px;
+    /* From Pseudo */
+}
+
+em, *[style="font-style: italic"] {
+    letter-spacing: -0.04em;
+    /* From Pseudo */
+}
+
+/*--- Banner ---*/
+/* Credit: @pseudo (structure/visibility), @anonymity (height) */
 .banner {
-    height: calc(100vh - 46px) !important;
+    visibility: hidden;
+}
+
+.banner > .container {
+    visibility: visible;
+    justify-content: center;
+}
+
+.review-card > .banner {
+    visibility: visible !important;
+}
+
+.banner:not(.review-card > .banner) {
+    height: calc(100vh - 126px) !important;
     background: var(--banner-url) !important;
     background-position: 50% 50% !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-attachment: fixed !important;
-    transition: height 0.8s ease-in-out;
+    transition: height 0.8s ease-in-out, background var(--master-transition-timer) ease-in-out !important;
+}
+
+.banner-content .actions > :not(.follower-badge, .nav-btn, .donator-badge) {
+    display: none;
 }
 
 /*--- container ----*/
 .header-wrap > .nav-wrap {
-    max-width: 1140px !important;
+    max-width: 1240px !important;
     margin: 0 auto;
     border-radius: var(--brt);
     position: relative;
@@ -100,461 +205,201 @@
     margin-top: 0 !important;
 }
 
-/*--- search bar--- */
-
-.nav .wrap .search {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    padding: 5px;
-    background-color: #141414;
-    border-radius: 35px;
-    width: 65%;
-    cursor: text;
-    font-family: "Raleway", serif;
-}
-
-.nav .wrap .search:after {
-    content: "Search AniList";
-    margin-left: 10px;
-    color: rgb(237, 241, 245);
-}
-
-/*--- lowercase styling ---*/
-.details,
-.stats-wrap,
-.nav,
-.action.has-label,
-.stats > .title,
-.filters,
-.section-header,
-.title > :not(.notes),
-.list-head>div,
-.score,
-.progress,
-.status,
-.format,
-.genres,
-.el-input__inner,
-.el-scrollbar,
-.heading.score,
-.switch,
-.favourites-wrap,
-.read-review,
-.content > .header,
-.follower-badge,
-.action.has-label.active,
-.nav-btn:not(.nav-btn.donator-badge),
-.el-tooltip__popper,
-.pie-chart.vertical-layout > .title,
-.options > .option,
-.tooltip .content,
-textarea::placeholder,
-.el-dropdown-menu.el-popper.el-dropdown-menu--small,
-.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium,
-.el-dialog__body .title,
-.el-dialog__body .save-btn,
-.el-dialog__body .input-title,
-*.el-picker-panel.el-date-picker.el-popper,
-.quick-search input[placeholder="Search AniList"],
-.result-col > .title,
-.embed,
-.primary-links,
-.footer,
-.void-button.void-self-message,
-.void-toast,
-#nav.nav .links,
-*.el-message-box,
-.el-button.el-button--default.el-button--small,
-.el-button.el-button--default.el-button--small.el-button--primary,
-.delete-btn,
-*.checkbox-wrap,
-.stats .title,
-.filter-group span,
-.load-more,
-.rules-notice,
-.hohButton,
-.submissions,
-.actions:not(.banner-content .actions) {
-    text-transform: lowercase !important;
-}
-
-/*--- global color ---*/
-body,
-.site-theme-dark,
-.site-theme-contrast,
-:root {
-    --color-overlay: 20, 20, 20;
-}
-.el-tooltip__popper {
-    background: rgb(20, 20, 20) !important;
-}
-.el-tooltip__popper[x-placement^="top"] .popper__arrow,
-.el-tooltip__popper[x-placement^="top"] .popper__arrow::after {
-    border-top-color: rgb(20, 20, 20) !important;
-}
-.el-tooltip__popper[x-placement^="bottom"] .popper__arrow,
-.el-tooltip__popper[x-placement^="bottom"] .popper__arrow::after {
-    border-bottom-color: rgb(20, 20, 20) !important;
-}
-
-/*--- navbar animation and renaming ---*/
-.nav > .link {
-    position: relative;
-}
-.nav > .link::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    height: 2px;
-    width: 0;
-    background: rgb(var(--color-blue));
-    transition: 0.2s ease-in-out;
-}
-.nav > .router-link-active::after {
-    left: 0;
-    width: 100%;
-    background: rgb(var(--color-blue));
-}
-.nav > .link:hover::after {
-    left: 0;
-    width: 100%;
-    background: rgb(var(--color-blue));
-}
-.nav-wrap :is(
-a[href*="/animelist"],
-a[href*="/mangalist"],
-a[href$="/anonymity/"]
-) {
-    visibility: hidden;
-    position: relative;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-}
-.nav-wrap :is(
-a[href*="/animelist"],
-a[href*="/mangalist"],
-a[href$="/anonymity/"]
-)::after {
-    visibility: visible;
-}
-.nav-wrap :is(
-a[href*="/animelist"],
-a[href*="/mangalist"],
-a[href$="/anonymity/"]
-)::before {
-    text-align: center;
-    display: inline-block;
-    left: 0;
-    width: 100%;
-    visibility: visible;
-    position: absolute;
-}
-.nav-wrap a[href*="/animelist"]::before {
-    content: "anime";
-}
-.nav-wrap a[href*="/mangalist"]::before {
-    content: "manga";
-}
-.nav-wrap a[href$="/anonymity/"]::before {
-    content: "home";
-}
-.nav-wrap a {
-    background: unset !important
-}
-
-/*--- stats —*/
-
-@media (max-width: 1540px) {
-    .stats-wrap {
-        grid-template-columns: 1fr;
-        grid-column-gap: 0;
-        gap: 28px;
-    }
-}
-
-.list-stats.content-wrap:hover {
-    height: 100%;
-    max-height: calc(100% + 35px);
-}
-
-.list-stats.content-wrap:hover .footer {
-    opacity: 100%;
-}
-
-.list-stats.content-wrap {
-    height: calc(160.5px - 35px);
-    transition: all 1s;
-    margin-bottom: 0px !important;
-}
-
-.stats-wrap .footer {
-    opacity: 0%;
-    transition: all 1s;
-    height: 35px;
-}
-
-.milestones .milestone:after {
-    padding-top: 0px !important;
-}
-
-.stats-wrap .footer .milestones {
-    height: 25px;
-    padding: 5px 0px;
-}
-
-.stats-wrap .stat:first-child .value {
-    font-size: 5rem;
-}
-
-.stats-wrap .stat:first-child .label {
-    font-size: 1em;
-}
-
-.stats-wrap > .list-stats > .stats-wrap {
-    grid-auto-flow: inherit;
-    align-items: center;
-    row-gap: 1.2rem;
-    grid-template-areas: "a b" "a c";
-}
-
-.stats-wrap .stat:nth-child(1) {
-    grid-area: a;
-}
-
-.stats-wrap .stat:nth-child(2) {
-    grid-area: b;
-}
-.stats-wrap .stat:nth-child(3) {
-    grid-area: c;
-}
-.activity-feed-wrap, .activity-feed-wrap + div {
-    margin-top: 25px;
-}
-
-/*--- donator follow buttons transparency ---*/
-.donator-badge:not(.donator-badge.rainbow) {
-    animation-duration: unset !important;
-    background-color: rgba(var(--color-blue), 0.6) !important;
-}
-.follower-badge,
-.nav-btn {
-    background-color: rgba(var(--color-blue), 0.6) !important;
-}
-
-/*--- profile width ---*/
-
-.container {
-    max-width: 1240px !important;
-    padding-left: 75px !important;
-    padding-right: 75px !important;
-}
-.genres .genre:last-child {
-    display: none !important;
-}
-.history-day:nth-of-type(-n + 21) {
-    display: none;
-}
-.activity-entry:has(.small) {
-    grid-column-start: 1 !important;
-    grid-column-end: 3 !important;
-}
-.section > .stats-wrap {
-    grid-template-columns: 1fr !important;
-    grid-column-gap: 0 !important;
-}
-.stat-cards {
-    grid-template-columns: repeat(2, 1fr) !important;
-}
-.stat-cards.has-images {
-    grid-template-columns: 1fr !important;
-    max-width: 700px !important;
-}
-.highlights {
-    display: grid !important;
-    grid-gap: 40px 30px !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    margin-left: 5% !important;
-    width: 90% !important;
-}
-
-/*--- width adjustment ---*/
-
-.section:first-child {
-    position: relative;
-    width: 428px !important;
-    right: 25px !important;
-}
-.section:last-child {
-    position: relative;
-    right: 40px !important;
-    width: 664px !important;
-}
-.nav .link[data-v-1cc2919e] {
-    margin: 0 15px;
-}
-/*--- favourites —*/
-
-.overview div.favourites:nth-child(6) > h2:nth-child(1) {
-    position: relative;
-    visibility: hidden;
-}
-/*--- Other ---*/
-div.desktop:nth-child(3) {
-    display: none;
-}
-.nav-wrap a.link:nth-child(8) {
-    display: none;
-}
+/*--- Global Navbar ---*/
 #nav.nav {
-    background-color: rgba(20, 20, 20, 1) !important;
-    transition: all 0s ease 0s, top 0.5s ease 0s !important;
-    left: calc((100% - 1240px) / 2);
-    width: 1240px;
-    border-radius: 0 0 10px 10px !important;
+    background-color: var(--global-nav-background) !important;
+    transition: all 0s ease 0s, top 0.3s ease 0s !important;
+    left: calc((100% - 1340px) / 2);
+    width: 1340px;
 }
-.tooltip .title {
-    text-transform: lowercase;
+#nav.nav:not(:has(.quick-search.visible)) {
+    backdrop-filter: var(--global-nav-blur);
 }
-.tooltip .content:has(.circle) {
-    display: block;
-    text-transform: lowercase;
-}
-.review-card .header {
-    font-weight: bold !important;
-}
-.banner-content .actions > :not(.follower-badge, .nav-btn, .donator-badge) {
-    display: none;
-}
-body:has(.content > .overview, .favourites .favourites) .tooltip .content {
-    display: none;
-}
-.tooltip .title {
-    text-transform: lowercase;
-}
-body:has(.content > .overview, .favourites .favourites) .tooltip .content:has(.circle) {
-    display: block;
-    text-transform: lowercase;
-}
-.users {
-    background: rgba(10, 10, 10, 0.35) !important;
-}
-.follow-card {
-    background: unset !important;
-}
-.name-wrapper > .name {
-    text-shadow: 1px 1px 4px black;
-}
-.banner-content > .avatar {
-    max-width: 230px !important;
-    max-height: 230px !important;
-    content: var(--avatar-url);
-    /* PFP Default width and height values are 230px */
-}
-.tooltip .title, .favourites .favourites > .tooltip .title {
-    padding-right: 12px !important;
-}
-.details .title {
-    font-weight: 600;
-}
-.home .activity-feed-wrap .section-header .el-dropdown-menu__item, .user .activity-feed-wrap .section-header .el-dropdown-menu__item {
-    background: none !important;
-}
-.overview .section:first-child .section-header {
-    text-align: center;
+/* Global Navbar Search */
+#nav .wrap .search {
+    grid-row-start: 1;
+    grid-column-start: 3;
+    width: var(--search-width);
+    padding: 10px 14px;
+    background: rgb(35, 35, 35, 0.5);
+    border-radius: 35px;
+    margin: 0 5px 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    font-family: "Raleway", serif;
-    font-style: italic;
+    transition: all var(--master-transition-timer) ease-in-out;
+    position: relative;
 }
-.favourites.preview .favourites-wrap.studios[data-v-ddf96a3c] {
-    text-align: center;
-    margin-top: -5px;
+#nav .wrap .search:hover {
+    width: var(--search-width-hover);
+    background: rgb(25, 25, 25, 0.5);
+    cursor: pointer;
 }
-
-.favourites .favourites .section-header {
-    visibility: hidden;
+#nav .wrap .search:after {
+    content: var(--search-text);
+    margin-left: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    transition: all var(--master-transition-timer) ease-in-out;
 }
-
-.favourites.preview .favourites-wrap:not(.favourites.preview .favourites-wrap.studios) {
-    display: grid !important;
-    grid-gap: 10px;
-    grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: minmax(115px, auto);
-    padding: 0 !important;
-    margin-bottom: 35px !important;
-    background: unset !important;
+.transparent .search[data-v-62eacfff] svg, .search[data-v-62eacfff] svg {
+    color: #ffffff;
+    transition: all var(--master-transition-timer) ease-in-out;
 }
-
-.favourites.preview .favourites-wrap a.favourite:not(.favourites.preview .favourites-wrap.studios a.favourite) {
-    padding: 0 !important;
-    margin: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    min-height: 60px;
+#nav .dropdown {
+    background: var(--global-nav-dropdown);
+    transition: opacity var(--master-transition-timer) ease-in-out;
+}
+#nav .dropdown::before {
+    border-bottom-color: var(--global-nav-dropdown) !important;
+    color: var(--global-nav-dropdown) !important;
 }
 
-.favourites.preview .favourites-wrap.studios {
-    background: unset !important;
+.markdown-editor,
+.el-textarea textarea,
+.list-section,
+.lists .theme-switch,
+.filter-group .active,
+.filters-wrap input,
+.el-slider__runway,
+.load-more,
+.favourites .favourites .favourites-wrap,
+.overview .favourites .favourites-wrap,
+.stats .circle,
+.stats .switch,
+.stats .bar-chart-wrap,
+.stats .pie-chart,
+.stats .line-chart-wrap,
+.filter-group .router-link-active,
+.ps-container.horizontal-scroller,
+.stats .stat-card,
+.review-card,
+.el-input__inner,
+.genre-overview.content-wrap,
+.activity-history.content-wrap,
+.content-wrap,
+.footer,
+.activity-feed-wrap .wrap,
+.activity-feed-wrap .reply,
+.el-input,
+.comment-wrap.depth-0.even,
+.thread-card,
+.activity-feed-wrap blockquote,
+.comment blockquote,
+.markdown-spoiler::before,
+.markdown-spoiler.spoiler-visible span,
+.embed,
+.container > .activity-entry blockquote,
+.input,
+.stats-wrap .progress,
+.submissions-page .submission,
+.scrollableContent * {
+    background: var(--foreground) !important;
+}
+.body {
+    background: var(--list-editor-foreground) !important;
+}
+.activity-feed .details .hohScore {
+    background: var(--hoh-score-preview) !important;
 }
 
-.overview div.favourites:nth-child(3) > h2:nth-child(1), .favourites .favourites:nth-child(1) .section-header, .favourites .favourites:nth-child(2) .section-header, .favourites .favourites:nth-child(3) .section-header, .favourites .favourites:nth-child(4) .section-header, .favourites .favourites:nth-child(5) .section-header {
-    position: relative !important;
+.container > .activity-entry .wrap,
+.container > .activity-entry .reply,
+.container > .activity-entry .markdown-editor,
+.container > .activity-entry .el-textarea__inner {
+    background: var(--direct-activity-foreground) !important;
+}
+.container > .activity-entry .wrap:not(:has(.el-dialog__wrapper)),
+.container > .activity-entry .reply:not(:has(.el-dialog__wrapper)),
+.container > .activity-entry .markdown-editor:not(:has(.el-dialog__wrapper)),
+.container > .activity-entry .el-textarea__inner:not(:has(.el-dialog__wrapper)) {
+    backdrop-filter: var( --direct-activity-foreground-blur);
+}
+.el-dialog__wrapper, .el-dialog__body, .el-message-box__wrapper {
+    backdrop-filter: var(--popup-blur) !important;
+}
+
+.result-col {
+    background: var(--quick-search-results) !important;
+}
+
+.el-dropdown-menu.el-popper.el-dropdown-menu--small,
+.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium {
+    background: var(--activity-cover-arrow-dropdown) !important;
+    overflow: hidden;
+}
+.el-dropdown-menu.el-popper.el-dropdown-menu--small .el-dropdown-menu__item:hover,
+.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium .el-dropdown-menu__item:hover,
+.result:hover {
+    background: var(--activity-cover-arrow-dropdown-hover) !important;
+    transition: var(--master-transition-timer) ease-in-out;
+}
+.el-dropdown-menu[x-placement^="top"] .popper__arrow {
+    border-top-color: rgb(20, 20, 20, 0.8) !important;
+}
+.el-dropdown-menu[x-placement^="bottom"] .popper__arrow {
+    border-bottom-color: rgb(20, 20, 20, 0.8) !important;
+}
+.el-dropdown-menu[x-placement^="top"] .popper__arrow::after,
+.el-dropdown-menu[x-placement^="bottom"] .popper__arrow::after {
     visibility: hidden !important;
 }
-.overview div.favourites:nth-child(4) > h2:nth-child(1) {
-    position: relative;
-    visibility: hidden;
+.el-dialog__body,
+.el-message-box {
+    background: rgba(20, 20, 20, 0.9) !important;
 }
-.overview div.favourites:nth-child(4) > h2:nth-child(1)::after, .favourites .favourites:nth-child(1) .section-header::after {
-    content: "anime";
-    font-style: italic;
-    position: absolute;
-    visibility: visible;
-    text-transform: lowercase;
+.ps-container.horizontal-scroller .area {
+    fill: rgba(var(--color-blue), 0.85) !important;
 }
-.overview div.favourites:nth-child(5) > h2:nth-child(1) {
-    position: relative;
-    visibility: hidden;
+.stats .x-axis,
+.pie-chart .pie-chart,
+.stats .stat-card .relations-wrap,
+.el-dropdown-menu.el-popper.el-dropdown-menu--small .el-dropdown-menu__item,
+.el-dropdown-menu.el-popper.activity-extras-dropdown.el-dropdown-menu--medium .el-dropdown-menu__item,
+.el-textarea,
+.activity-feed .time,
+.container .time,
+.thread-card > .footer,
+.list-section .progress,
+div.filter-group
+div.el-select.format.el-select--small
+div.el-select__tags
+input.el-select__input.is-small {
+    background: unset !important;
 }
-.overview div.favourites:nth-child(5) > h2:nth-child(1)::after, .favourites .favourites:nth-child(2) .section-header::after {
-    content: "manga";
-    font-style: italic;
-    position: absolute;
-    visibility: visible;
-    text-transform: lowercase;
+.button.cancel, el-tooltip.el-slider__button {
+    background: rgb(20, 20, 20) !important;
 }
-.overview div.favourites:nth-child(6) > h2:nth-child(1) {
-    position: relative;
-    visibility: hidden;
+.el-message-box__wrapper > div > div.el-message-box__btns > button:nth-child(1) {
+    background: rgb(10, 10, 10) !important;
 }
-.overview div.favourites:nth-child(6) > h2:nth-child(1)::after, .favourites .favourites:nth-child(3) .section-header::after {
-    content: "characters";
-    font-style: italic;
-    position: absolute;
-    visibility: visible;
-    text-transform: lowercase;
+.el-select-dropdown, .el-dropdown-menu:not(h2 ul), .el-dropdown-menu__item:not(h2 li) {
+    background: rgba(20, 20, 20) !important;
 }
-.overview div.favourites:nth-child(7) > h2:nth-child(1) {
-    position: relative;
-    visibility: hidden;
+.el-select-dropdown.el-popper, .el-picker-panel.el-date-picker.el-popper {
+    background-color: rgba(10, 10, 10, 0.8) !important;
+    backdrop-filter: blur(6px);
 }
-.overview div.favourites:nth-child(7) > h2:nth-child(1)::after, .favourites .favourites:nth-child(4) .section-header::after {
-    content: "staff";
-    font-style: italic;
-    position: absolute;
-    visibility: visible;
-    text-transform: lowercase;
+.el-select-dropdown__item.hover {
+    background: rgba(40, 40, 40, 0.5) !important;
 }
-.overview div.favourites:nth-child(8) > h2:nth-child(1) {
-    position: relative;
-    visibility: hidden;
+.el-dropdown-menu__item.el-dropdown-menu__item--divided::before {
+    display: none !important;
 }
-.overview div.favourites:nth-child(8) > h2:nth-child(1)::after, .favourites .favourites:nth-child(5) .section-header::after {
-    content: "studios";
-    font-style: italic;
-    position: absolute;
-    visibility: visible;
-    text-transform: lowercase;
+.el-picker-panel.el-date-picker.el-popper {
+    border-color: rgba(0,0,0,0) !important;
+    background: rgba(20, 20, 20, 0.9) !important;
+}
+.quick-search > .results > :nth-child(6) {
+    text-transform: initial !important;
+}
+
+/*--- Random Snippets Which I Have Yet To Organize ---*/
+.el-dropdown-menu__item:not(.is-disabled):hover svg {
+    color: var(--profile-color);
+    transition: var(--master-transition-timer) ease-in-out;
 }
 
 /* miscellaneous stylization */
@@ -697,103 +542,1362 @@ body {
     text-transform: initial !important;
 }
 
-/*---  colour styling ---*/
-body,
-.site-theme-dark,
-.site-theme-contrast,
-:root {
-    --color-text: 255, 255, 255;
-    /* plain text, header, statswrap progressbar number indicators */
-    --color-text-light: 255, 255, 255;
-    /* genre and statswrap text, secondary navbar links */
-    --color-text-lighter: 255, 255, 255;
-    /* filter text, time stamp text and icons */
-    --color-foreground-grey-dark: 10, 10, 10, 0.6 !important;
-    /* statswrap progress bar background, activity history empty field background */
-    --color-nav-transparent-background: 20, 20, 20, 0.675;
-    --color-nav-text-hover: 255, 255, 255;
-    /* top navbar text on hover */
-    --color-nav-transparent-text: 255, 255, 255;
-    /* top navbar text in transparent state */
-    --color-shadow-blue: 40, 40, 40;
-    --color-background-100: 20, 20, 20, 0.95;
-    --color-background-200: 20, 20, 20, 0.4;
-    --color-gray-100: 20, 20, 20, 0.95;
-    --color-gray-600: 255, 255, 255;
-    /* navdropdown secondary text and icons */
-    --color-gray-700: 255, 255, 255;
-    /* navdropdown footer text and icons */
-    --color-gray-800: 200, 200, 200;
-    /* navdropdown primary text, text and icon hover */
-    --color-gray-900: 200, 200, 200;
-    /* navdropdown footer text and icon hover */
-    --color-nav-transparent-text: 255, 255, 255;
-    /* top navbar text in transparent state */
-    --color-nav-text-hover: 200, 200, 200;
-    /* top navbar text on hover */
-}
-
-/*--- container shading and profile background ---*/
-:root,
-.site-theme-dark,
-.site-theme-contrast {
-    --border-radius: 10px;
-    /* global border radius */
-    --padding-v: 30px;
-    /* vertical content padding */
-    --padding-h: 30px;
-    /* horizontal content padding */
-    --brt: var(--border-radius) var(--border-radius) 0 0;
-    --brb: 0 0 var(--border-radius) var(--border-radius);
-    --pdh: var(--padding-v) var(--padding-h);
-}
-
-/*--- profile banner ---*/
-/* default position value is 50%*/
-body {
-    background-image: url("https://imgur.com/S7uyGKY.jpeg");
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-/*--- banner ---*/
-.banner {
-    visibility: hidden;
-}
-.banner > .container {
-    visibility: visible;
-    justify-content: center;
-}
-.review-card > .banner {
-    visibility: visible !important;
-}
-
-/*--- container ---*/
-.header-wrap > .nav-wrap {
-    max-width: 1240px !important;
-    margin: 0 auto;
-    border-radius: var(--brt);
+/*--- navbar animation and renaming ---*/
+.nav > .link {
     position: relative;
 }
-.content.container {
-    background: rgba(20, 20, 20, 0.35) !important;
-    padding: var(--pdh);
-    border-radius: var(--brb);
+.nav > .link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: 2px;
+    width: 0;
+    background: rgb(var(--color-blue));
+    transition: 0.2s ease-in-out;
 }
-.content.container:not(:has(.el-dialog__wrapper)) {
-    backdrop-filter: blur(6px);
+.nav > .router-link-active::after {
+    left: 0;
+    width: 100%;
+    background: rgb(var(--color-blue));
 }
-.content > .overview,
-.content > .medialist,
-.favourites,
-.content > .stats,
-.content > .user-social,
-.content .review-wrap,
-.content .submissions {
-    margin-top: 0 !important;
+.nav > .link:hover::after {
+    left: 0;
+    width: 100%;
+    background: rgb(var(--color-blue));
 }
+.nav-wrap :is(
+a[href*="/animelist"],
+a[href*="/mangalist"],
+a[href$="/nony/"]
+) {
+    visibility: hidden;
+    position: relative;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.nav-wrap :is(
+a[href*="/animelist"],
+a[href*="/mangalist"],
+a[href$="/nony/"]
+)::after {
+    visibility: visible;
+}
+.nav-wrap :is(
+a[href*="/animelist"],
+a[href*="/mangalist"],
+a[href$="/nony/"]
+)::before {
+    text-align: center;
+    display: inline-block;
+    left: 0;
+    width: 100%;
+    visibility: visible;
+    position: absolute;
+}
+.nav-wrap a[href*="/animelist"]::before {
+    content: "anime";
+}
+.nav-wrap a[href*="/mangalist"]::before {
+    content: "manga";
+}
+.nav-wrap a[href$="/nony/"]::before {
+    content: "home";
+}
+.nav-wrap a {
+    background: unset !important
+}
+
+/*════════════════════════════════════════════
+    Stats
+  ════════════════════════════════════════════*/
+
+/* Fix Stat Cards on 1240px Profile Width */
+.stat-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+.stat-card[data-v-686e8358] {
+    padding: 20px;
+}
+.stat-cards.has-images[data-v-e74f4a6a] {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: unset;
+}
+.header.has-images[data-v-e74f4a6a] {
+    max-width: unset;
+}
+.stat-cards.has-images .wrap > .image {
+    width: 108px;
+    height: 166px;
+    margin-top: 19px !important;
+}
+.has-image .relations-wrap[data-v-686e8358] {
+    padding-top: 4px;
+}
+.stat-cards.has-images .relations-wrap > .button.circle.previous, .stat-cards.has-images .relations-wrap > .button.circle.next {
+    top: 39px;
+}
+.stats .details .value[data-v-686e8358] {
+    color: var(--profile-color);
+}
+.stat-cards.has-images h2 {
+    padding-bottom: 0px !important;
+}
+.has-image .wrap[data-v-686e8358] {
+    grid-gap: 0px;
+}
+.highlights {
+    /* Fixes Overview Highlights on Stats */
+    display: grid !important;
+    grid-gap: 40px 30px !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    margin-left: 5% !important;
+    width: 90% !important;
+}
+
+/*--- Nav Hovers, Profile Scrollbar, and Various Other --color-blue Stuff  ---*/
+
+#nav .primary-link-text {
+    color: #ffffff;
+}
+
+/* Link Change Colour on Hover */
+.overview .section:first-child .about a:hover, .overview .section:last-child a:hover {
+    transition: color var(--master-transition-timer) ease-in-out;
+    color: var(--profile-color) !important; /* Fallback to profile color */
+}
+
+#app > div > div > div > .link:hover, .link[data-v-62eacfff]:hover, .primary-link .icon[data-v-38edf8f8]:hover, .primary-link-text[data-v-38edf8f8]:hover, .secondary-links a[data-v-38edf8f8]:hover, .primary-link:hover .icon[data-v-38edf8f8], .footer a[data-v-38edf8f8]:hover, .footer a:hover .icon[data-v-38edf8f8], .search[data-v-62eacfff]:hover svg, .primary-link[data-v-04b245e6]:hover, .primary-link:hover .icon[data-v-04b245e6], .secondary-link[data-v-04b245e6]:hover {
+    color: var(--profile-color) !important;
+    transition: var(--master-transition-timer) ease-in-out;
+}
+
+* {
+    scrollbar-color: rgb(var(--profile-color-rgb)) rgba(1, 1, 1, 0.1) !important;
+}
+.el-select-dropdown__item.selected, .el-select-dropdown.is-multiple .el-select-dropdown__item.selected, .el-checkbox__input.is-checked+.el-checkbox__label {
+    color: var(--profile-color);
+}
+.el-message-box__headerbtn:hover .el-message-box__close, .el-dialog__headerbtn:hover .el-dialog__close {
+    color: var(--profile-color) !important;
+    transition: var(--master-transition-timer) ease-in-out;
+}
+.el-select__tags-text {
+    color: #ffffff;
+}
+.el-select__tags .el-tag, .el-select__tags .el-tag--info, .el-select-dropdown.is-multiple .el-select-dropdown__item.selected {
+    background: rgba(120, 120, 120, 0.3);
+}
+.el-dialog__wrapper.list-editor-wrap .save-btn, .list-editor-wrap .list-editor .body .delete-btn {
+    background: rgb(var(--profile-color-rgb));
+}
+.list-editor-wrap .list-editor .body .delete-btn:hover {
+    background: color-mix(in srgb, rgb(var(--profile-color-rgb)) 85%, white);
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner {
+    background-color: var(--profile-color);
+    border-color: var(--profile-color);
+}
+body > div.el-message-box__wrapper > div > div.el-message-box__btns > button.el-button.el-button--default.el-button--small.el-button--primary {
+    background-color: var(--profile-color);
+}
+
+/*--- List Editor Calendars and Hovers ---*/
+.el-picker-panel, .el-picker-panel .el-date-picker__header-label, .el-picker-panel .el-picker-panel__icon-btn, .el-year-table td .cell, .el-month-table td .cell {
+    color: #ffffff;
+}
+.el-picker-panel .el-date-table td.next-month, .el-picker-panel .el-date-table td.prev-month {
+    color: #76777a;
+}
+.el-picker-panel .el-date-table th, .el-picker-panel .el-date-picker__header-label {
+    font-weight: 600;
+}
+
+.el-date-table td.available:hover, .el-picker-panel__icon-btn:hover, .el-date-picker__header-label:hover, .el-year-table td .cell:hover, .el-month-table td .cell:hover {
+    color: var(--profile-color);
+    transition: var(--master-transition-timer) ease-in-out;
+}
+.el-date-table td.today span, .el-picker-panel .el-date-table th, .el-year-table td.today .cell, .el-year-table td.current:not(.disabled) .cell, .el-month-table td.today .cell, .el-month-table td.current:not(.disabled) .cell {
+    color: var(--profile-color);
+}
+.el-date-table td.current:not(.disabled) span, .el-picker-panel .el-date-table td.current:not(.disabled) span {
+    background-color: var(--profile-color);
+}
+
+/*════════════════════════════════════════════
+  Animations
+════════════════════════════════════════════*/
+/* Credit: @pseudo (selectors), Animate.css (keyframes) */
+.overview:has(.section .about) {
+    animation: fadeInUp var(--animation-timer-overview) ease-out;
+}
+
+.activity-feed .activity-entry {
+    animation: fadeInUp var(--animation-timer-activityfeed) ease-out !important;
+}
+
+.overview .favourites {
+    animation: fadeInUp var(--animation-timer-favourites) ease-out;
+}
+
+.like-wrap .users {
+    animation: fadeInUp var(--animation-timer-likes) ease-out;
+}
+
+.reply-wrap .like-wrap .users {
+    animation: fadeInRight var(--animation-timer-likes) ease-out;
+}
+
+.activity-replies .reply, .activity-feed .activity-entry .input {
+    animation: fadeInRight var(--animation-timer-comments) ease-out;
+}
+
+.container > .activity-entry .reply, .container > .activity-entry .input {
+    animation: fadeInUp var(--animation-timer-comments) ease-out;
+}
+
+.reply.preview, .container > .activity-entry .reply.preview, .activity-feed-wrap > .activity-edit > .activity-entry.preview {
+    animation: fadeInDown var(--animation-timer-replypreview) ease-out !important;
+}
+
+blockquote, .activity-replies .reply img, .activity-replies .reply .youtube, .activity-replies .reply video {
+    animation: fadeInUp var(--animation-timer-commentcontents) ease-out;
+}
+
+.activity-feed .activity-entry:has(.el-dialog__wrapper) .input, .activity-feed .activity-entry:has(.el-dialog__wrapper) .reply.preview, .reply.preview blockquote, .reply.preview img, .reply.preview .youtube, .reply.preview video {
+    animation: unset;
+}
+
+.el-dialog.list-editor, .el-dialog.activity-editor-unscoped {
+    animation: fadeInUp var(--animation-timer-edit) ease-out;
+}
+
+.medialist .lists, .medialist {
+    animation: fadeInUp var(--animation-timer-medialist) ease-out;
+}
+
+.favourites:not(.overview .favourites) .favourites .favourites-wrap, .stats-wrap[data-v-1e00b9da], .user-social .user-follow .wrap, .user-social .user-threads .wrap, .user-social .user-comments .wrap, .user-reviews, .submissions, .user-moderation {
+    animation: fadeInUp var(--animation-timer-load) ease-out;
+}
+
+/* Activity Feed Dropdown Stuff - most credit for this is to @Sekuji */
+.list.small .entry-dropdown[data-v-04d66030] {
+    border-radius: var(--border-radius) 0 0 0;
+    height: 17px;
+    width: 50px;
+}
+.entry-dropdown[data-v-04d66030]:hover {
+    transform: scale(1) !important;
+    background: rgba(var(--color-overlay),.7);
+    transition: var(--master-transition-timer);
+    height: 22px !important;
+}
+.entry-dropdown[data-v-04d66030] svg {
+    transition: all var(--master-transition-timer) ease-in-out;
+}
+.entry-dropdown[data-v-04d66030]:hover svg {
+    color: var(--profile-color);
+}
+.entry-dropdown .el-dropdown-link[data-v-04d66030] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.activity-feed .activity-entry:has(.small):hover:not(:has(.cover:hover)) .entry-dropdown[data-v-04d66030] {
+    opacity: 0;
+    pointer-events: none;
+}
+.activity-feed .activity-entry:has(.small):hover:not(:has(.cover:hover)) .entry-dropdown[data-v-04d66030]:hover {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/*--- donator follow buttons transparency ---*/
+.donator-badge:not(.donator-badge.rainbow) {
+    animation-duration: unset !important;
+    background-color: rgba(var(--color-blue), 0.6) !important;
+}
+.follower-badge,
+.nav-btn {
+    background-color: rgba(var(--color-blue), 0.6) !important;
+}
+
+/*--- Profile Width ---*/
+.container {
+    /* Container Width and Overview Styling */
+    max-width: 1240px !important;
+    padding-left: 75px !important;
+    padding-right: 75px !important;
+}
+.section:first-child {
+    position: relative;
+    width: 408px !important;
+    right: 25px !important;
+}
+.section:last-child {
+    position: relative;
+    right: 60px !important;
+    width: 684px !important;
+}
+.nav .link[data-v-1cc2919e] {
+    margin: 0 15px;
+}
+.history-day:nth-of-type(-n + 21) {
+    /* Hides 6-month old Activity History  */
+    display: none;
+}
+.activity-entry:has(.small) {
+    /* Makes List Activities Take Entire Row */
+    grid-column-start: 1 !important;
+    grid-column-end: 3 !important;
+}
+.section > .stats-wrap {
+    /* Force Anime and Manga Overview Stats to be side-by-side */
+    grid-template-columns: 1fr 1fr !important;
+    grid-column-gap: 30px !important;
+}
+
+/* Adding --profile-color to the Activity History Tooltip Circles (not exact) */
+.tooltip .circle.lv-1[data-v-b79eb0f0] {
+    background: color-mix(in srgb, rgb(var(--profile-color-rgb)), gray 65%);
+}
+.tooltip .circle.lv-3[data-v-b79eb0f0] {
+    background: color-mix(in srgb, rgb(var(--profile-color-rgb)), gray 35%);
+}
+.tooltip .circle.lv-5[data-v-b79eb0f0] {
+    background: color-mix(in srgb, rgb(var(--profile-color-rgb)), gray 18%);
+}
+.tooltip .circle.lv-7[data-v-b79eb0f0] {
+    background: color-mix(in srgb, rgb(var(--profile-color-rgb)), gray 0.1%);
+}
+.tooltip .circle.lv-9[data-v-b79eb0f0] {
+    background: color-mix(in srgb, rgb(var(--profile-color-rgb)), gray 0%);
+}
+
+/*--- width adjustment ---*/
+
+.section:first-child {
+    position: relative;
+    width: 428px !important;
+    right: 25px !important;
+}
+.section:last-child {
+    position: relative;
+    right: 40px !important;
+    width: 664px !important;
+}
+.nav .link[data-v-1cc2919e] {
+    margin: 0 15px;
+}
+
+/*════════════════════════════════════════════
+    Media Lists
+  ════════════════════════════════════════════*/
+
+.list-wrap .repeat {
+    color: color-mix(in srgb,rgb(var(--color-blue)) 80%, white);
+}
+.medialist .filter-group:first-child span.count {
+    color: rgb(var(--color-blue));
+    font-weight: 500
+}
+.list-editor-wrap .list-editor .body .delete-btn {
+    background: rgb(var(--color-blue-dim));
+}
+
+/*--- Widen List Notes (Default and Compact View) ---*/
+
+.medialist .notes:before, .medialist .repeat:before {
+    width: max-content;
+    max-width: 40vw;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(7px) !important;
+    padding: 12px;
+}
+/*--- List Adjustments ---*/
+.list-head>div {
+    color: rgb(var(--color-blue));
+    font-weight: bold;
+    font-style: italic;
+}
+.title > :not(.notes) {
+    font-style: italic;
+}
+.medialist .release-status.RELEASING {
+    background: color-mix(in srgb,rgb(var(--color-blue)) 80%, white);
+    box-shadow: 0 0 5px rgb(var(--color-blue-dim));
+}
+
+.medialist.table .entry .image {
+    background-size: 100%;
+    box-shadow: none;
+    transition: background-size var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+}
+.medialist.table .entry:hover .cover .image {
+    background-size: 100%;
+    box-shadow: none;
+}
+.medialist.table .entry:hover:has(.title a:hover) .cover .image {
+    background-size: 110%;
+    box-shadow: var(--box-shadow) color-mix(in srgb,rgb(var(--color-blue)) 70%, white);
+}
+.el-input--small .el-input__inner::placeholder, .el-input__inner::placeholder, .el-input__prefix, .el-select-dropdown__empty {
+    color: #ffffff;
+}
+
+/*--- List Grid View Adjustments ---*/
+.medialist.cards .list-section {
+    background: unset !important;
+}
+.medialist.cards .entry-card .notes:before {
+    min-width: fit-content;
+    max-width: 35vw !important;
+}
+.medialist.cards .entry-card:nth-child(5n) .notes:before {
+    left: auto;
+    right: 100%;
+    transform: translateX(-10px);
+}
+.medialist.cards .entry-card .title {
+    background: rgba(var(--color-overlay), .7);
+    backdrop-filter: blur(3px);
+    transition: all var(--master-transition-timer) ease-in-out;
+}
+.medialist.cards .entry-card:hover .title {
+    background: rgba(var(--color-overlay), .9);
+    backdrop-filter: blur(9px);
+}
+.medialist.cards .entry-card .image {
+    background-size: 100% !important;
+    transition: all var(--master-transition-timer) ease-in-out;
+}
+.medialist.cards .entry-card:hover .image {
+    background-size: 110% !important;
+    box-shadow: var(--box-shadow) color-mix(in srgb,rgb(var(--color-blue)) 70%, white);
+}
+.medialist.cards .entry-card .progress, .medialist.cards .entry-card .score {
+    color: color-mix(in srgb,rgb(var(--color-blue)) 60%, white);
+}
+.medialist.cards .entry-card .edit {
+    background: rgba(var(--color-overlay), .7);
+    transition: all var(--master-transition-timer) ease-in-out;
+}
+.medialist.cards .entry-card .edit:hover {
+    background: rgba(var(--color-overlay), .85);
+    backdrop-filter: blur(3px);
+}
+
+.medialist.cards:has(.entry-card .notes:hover) .notes svg, .medialist.cards:has(.entry-card .notes:hover) .repeat svg {
+    opacity: 0;
+}
+
+.medialist.cards .entry-card:has(.notes:hover) .notes svg, .medialist.cards .entry-card:has(.notes:hover) .repeat svg {
+    opacity: 1;
+}
+
+/* Favourites Grid Layout (Overview) */
+.favourites.preview .favourites-wrap:not(.favourites.preview .favourites-wrap.studios) {
+    display: grid !important;
+    grid-gap: 12px !important;
+    column-gap: 12px !important;
+    grid-template-columns: repeat(4, 85px) !important;
+    grid-template-rows: unset !important;
+    grid-auto-rows: minmax(120px, auto) !important;
+    padding: 0 !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 35px !important;
+    background: unset !important;
+    justify-content: center !important;
+    width: 408px !important;
+}
+
+.favourites.preview .favourites-wrap a.favourite:not(.favourites.preview .favourites-wrap.studios a.favourite) {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 60px;
+}
+
+/* Global Favourite Hover Transitions (Subtle version) */
+.favourites a.favourite {
+    filter: var(--cover-saturation);
+    transition: all var(--master-transition-timer) ease-in-out;
+    background-size: 100% !important;
+}
+
+.favourites a.favourite:hover {
+    box-shadow: var(--box-shadow) rgba(var(--color-blue), 0.7);
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+}
+
+/* === Custom Top Anime Styling === */
+/* Credit: @anonymity (images/selection), @pseudo (layout/hover concept) */
+.overview .favourites a.favourite[href*="anime/132126"] {
+    grid-column: 1 / 5 !important;
+    background-image: url('https://imgur.com/lUHvwWT.jpeg') !important;
+    background-position: center 75% !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="anime/329"] {
+    grid-column: 1 / 3 !important;
+    background-image: url('https://imgur.com/DrpvOjW.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="anime/109403"] {
+    grid-column: 3 / 5 !important;
+    background-image: url('https://imgur.com/b79OMjl.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+body:has(.overview a.favourite[href*="anime/132126"]:hover) {
+    --banner-url: url('https://imgur.com/1Hea52w.png') !important;
+}
+
+body:has(.overview a.favourite[href*="anime/329"]:hover) {
+    --banner-url: url('https://imgur.com/0kDCDFH.png') !important;
+}
+
+body:has(.overview a.favourite[href*="anime/109403"]:hover) {
+    --banner-url: url('https://imgur.com/aba4itG.png') !important;
+}
+/* === End Custom Top 3 Styling === */
+
+/* === Custom Top Manga 3 Styling === */
+/* Credit: @anonymity (images/selection), @pseudo (layout/hover concept) */
+.overview .favourites a.favourite[href*="manga/30081"] {
+    grid-column: 1 / 5 !important;
+    background-image: url('https://imgur.com/2cywTP0.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="manga/99022"] {
+    grid-column: 1 / 3 !important;
+    background-image: url('https://imgur.com/Wq8t3JL.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="manga/145531"] {
+    grid-column: 3 / 5 !important;
+    background-image: url('https://imgur.com/9RIPQfK.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+body:has(.overview a.favourite[href*="manga/30081"]:hover) {
+    --banner-url: url('https://imgur.com/Qju3Q1b.png') !important;
+}
+
+body:has(.overview a.favourite[href*="manga/99022"]:hover) {
+    --banner-url: url('https://imgur.com/jl3yAyR.png') !important;
+}
+
+body:has(.overview a.favourite[href*="manga/145531"]:hover) {
+    --banner-url: url('https://imgur.com/n3MMLDK.png') !important;
+}
+/* === End Custom Top Manga Styling === */
+
+/* === Custom Studio Styling === */
+/* Credit: @anonymity (images/selection), @pseudo (layout/hover concept) */
+.overview .favourites a.favourite[href*="studio/44/"] {
+    background-image: url('https://imgur.com/EjlSzhn.gif') !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/2/"] {
+    background-image: url('https://imgur.com/3V4TyeO.gif') !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/6450/"] {
+    background-image: url('https://i.imgur.com/oqNO6Bk.gif') !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/11/"] {
+    background-image: url('https://i.imgur.com/HEWXKTP.gif') !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/803/"] {
+    background-image: url('https://i.imgur.com/mgFHjgD.gif') !important;
+    background-position: center 20% !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/6371/"] {
+    background-image: url('https://i.imgur.com/P76zS5L.gif') !important;
+    background-position: center 30% !important;
+    background-size: cover !important;
+}
+
+/* === End Custom Studio Styling === */
+/* === Favourite Item Text Positioning === */
+/* Moves text higher off bottom edge */
+.favourites .favourite .name {
+    /* CORRECTED SELECTOR */
+    position: absolute !important;
+    /* Ensure positioning */
+    bottom: 18px !important;
+    /* INCREASED value further (adjust as needed) */
+    left: 5px !important;
+    right: 5px !important;
+    width: calc(100% - 10px) !important;
+    /* Ensure width constraints */
+    text-align: center !important;
+    color: white !important;
+    /* Ensure color */
+    background: none !important;
+    /* Remove default overlay background if any */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8) !important;
+    font-size: 0.9em !important;
+    line-height: 1.2 !important;
+    padding: 2px 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    /* Prevent text blocking hover */
+    /* ADDED FOR DEBUG */
+    /* background-color: lime !important; */
+    /* Remove this line after testing */
+}
+
+/*--- Hide Favs Until Hover Grid Styling ---*/
+
+/* Anime Grid */
+.favourites.preview .favourites-wrap.anime {
+    max-height: 275px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+4) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.favourites.preview .favourites-wrap.anime:hover {
+    max-height: 920px !important;
+}
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+4) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
+}
+.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+4):hover {
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/* Manga Grid */
+.favourites.preview .favourites-wrap.manga {
+    max-height: 275px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+4) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.favourites.preview .favourites-wrap.manga:hover {
+    max-height: 920px !important;
+}
+
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(n+4) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
+}
+
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+4):hover {
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/* Characters Grid */
+.favourites.preview .favourites-wrap.characters {
+    max-height: 275px;
+    overflow: hidden;
+    transition: max-height 0.25s ease-in-out;
+}
+.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.favourites.preview .favourites-wrap.characters:hover {
+    max-height: 790px !important;
+}
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+9) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
+}
+.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9):hover {
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/* Staff Grid */
+.favourites.preview .favourites-wrap.staff {
+    max-height: 275px;
+    overflow: hidden;
+    transition: max-height 0.25s ease-in-out;
+}
+.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+9) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.favourites.preview .favourites-wrap.staff:hover {
+    max-height: 790px !important;
+}
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(n+9) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
+}
+.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+9):hover {
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/*--- Favourites Studio Styling (Wrap, Grid) ---*/
+.favourites.preview .favourites-wrap.studios {
+    background: unset !important;
+    margin-top: -5px;
+}
+.overview .favourite.studio {
+    min-height: 120px;
+    font-size: 1.8rem;
+    display: grid;
+    grid-gap: 10px;
+    padding: 2px !important;
+    text-align: center;
+    align-content: center;
+    position: relative;
+    color: transparent;
+    margin-bottom: 12px !important;
+    box-shadow: none !important;
+    transition: color 0.3s ease;
+    /* Smooth fade for text */
+}
+
+/*--- General Studio + Hover Styling ---*/
+.favourites a.favourite.studio::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    z-index: -1;
+    filter: blur(0px) brightness(1.2);
+    transition: filter var(--master-transition-timer) ease-in-out, transform var(--master-transition-timer) ease-in-out;
+    transform: scale(1);
+    border-radius: var(--border-radius) !important;
+}
+
+.favourites a.favourite.studio::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    transition: box-shadow var(--master-transition-timer) ease-in-out !important;
+    border-radius: var(--border-radius) !important;
+}
+
+.favourites a.favourite.studio:hover::before {
+    filter: blur(2px) brightness(0.85);
+    /* Slightly stronger blur for better text contrast */
+    transform: scale(1.01, 1.03);
+}
+
+/* === Show Studio Name on Hover === */
+.overview .favourite.studio:hover {
+    color: #fff !important;
+    /* Or replace with a custom variable like var(--text-color) */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    /* Adds contrast against the background */
+}
+
+/*--- Stuff to Specifically Fix Automail 5-Width Fuckery For Studios ---*/
+.overview .favourites > .favourites-wrap.studios {
+    column-gap: 25px !important;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    height: 800px !important;
+    row-gap: 17px !important;
+    width: 408px !important;
+    padding: 15px !important;
+    padding-top: 20px !important;
+}
+.overview .favourite.studio {
+    width: 376px !important;
+}
+.overview .favourite.studio::after, .favourites .favourite.studio::after {
+    all: unset !important;
+}
+
+/*--- Other ---*/
+div.desktop:nth-child(3) {
+    display: none;
+}
+.nav-wrap a.link:nth-child(8) {
+    display: none;
+}
+#nav.nav {
+    background-color: rgba(20, 20, 20, 0.8) !important;
+    transition: all 0s ease 0s, top 0.5s ease 0s !important;
+    left: calc((100% - 1240px) / 2);
+    width: 1240px;
+    border-radius: 0 0 10px 10px !important;
+}
+
+.tooltip .title {
+    text-transform: lowercase;
+}
+.tooltip .content:has(.circle) {
+    display: block;
+    text-transform: lowercase;
+}
+.review-card .header {
+    font-weight: bold !important;
+}
+.banner-content .actions > :not(.follower-badge, .nav-btn, .donator-badge) {
+    display: none;
+}
+body:has(.content > .overview, .favourites .favourites) .tooltip .content {
+    display: none;
+}
+.tooltip:has(.prev-name-container[data-v-1cc2919e]) .title  {
+    display: none !important;
+}
+
+.tooltip .title {
+    text-transform: lowercase;
+}
+body:has(.content > .overview, .favourites .favourites) .tooltip .content:has(.circle) {
+    display: block;
+    text-transform: lowercase;
+}
+.users {
+    background: rgba(10, 10, 10, 0.35) !important;
+}
+.follow-card {
+    background: unset !important;
+}
+.name-wrapper > .name {
+    text-shadow: 1px 1px 4px black;
+}
+
+.tooltip .title, .favourites .favourites > .tooltip .title {
+    padding-right: 12px !important;
+}
+.details .title {
+    font-weight: 600;
+}
+.home .activity-feed-wrap .section-header .el-dropdown-menu__item, .user .activity-feed-wrap .section-header .el-dropdown-menu__item {
+    background: none !important;
+}
+.overview .section:first-child .section-header {
+    text-align: center;
+    justify-content: center;
+    font-style: italic;
+}
+.favourites.preview .favourites-wrap.studios[data-v-ddf96a3c] {
+    text-align: center;
+    margin-top: -5px;
+}
+
+.favourites .favourites .section-header {
+    visibility: hidden;
+}
+
+.favourites.preview .favourites-wrap:not(.favourites.preview .favourites-wrap.studios) {
+    display: grid !important;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(115px, auto);
+    padding: 0 !important;
+    margin-bottom: 35px !important;
+    background: unset !important;
+}
+
+.favourites.preview .favourites-wrap a.favourite:not(.favourites.preview .favourites-wrap.studios a.favourite) {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 60px;
+}
+
+.favourites.preview .favourites-wrap.studios {
+    background: unset !important;
+}
+
+.overview div.favourites:nth-child(3) > h2:nth-child(1), .favourites .favourites:nth-child(1) .section-header, .favourites .favourites:nth-child(2) .section-header, .favourites .favourites:nth-child(3) .section-header, .favourites .favourites:nth-child(4) .section-header, .favourites .favourites:nth-child(5) .section-header {
+    position: relative !important;
+    visibility: hidden !important;
+}
+/*--- Section Headers for Favourites ---*/
+.overview div.favourites:nth-child(4) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+    z-index: 1;
+}
+.overview div.favourites:nth-child(4) > h2:nth-child(1)::after {
+    right: 200px;
+    content: "anime ";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+    z-index: 2;
+}
+.favourites .favourites:nth-child(1) .section-header::after {
+    content: "anime ";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+    z-index: 2;
+}
+
+.overview div.favourites:nth-child(5) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+    z-index: 1;
+}
+.overview div.favourites:nth-child(5) > h2:nth-child(1)::after {
+    right: 200px;
+    content: "manga ";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+    z-index: 2;
+}
+.favourites .favourites:nth-child(2) .section-header::after {
+    content: "manga ";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+    z-index: 2;
+}
+
+.overview div.favourites:nth-child(6) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+    z-index: 1;
+}
+.overview div.favourites:nth-child(6) > h2:nth-child(1)::after,
+.favourites .favourites:nth-child(3) .section-header::after {
+    content: "characters";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+    z-index: 2;
+}
+.overview div.favourites:nth-child(6) > h2:nth-child(1)::after {
+    right: 190px;
+}
+
+.overview div.favourites:nth-child(7) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+    z-index: 1;
+}
+.overview div.favourites:nth-child(7) > h2:nth-child(1)::after,
+.favourites .favourites:nth-child(4) .section-header::after {
+    content: "staff";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+    z-index: 2;
+}
+.overview div.favourites:nth-child(7) > h2:nth-child(1)::after {
+    right: 210px;
+}
+
+.overview div.favourites:nth-child(8) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+    z-index: 1;
+}
+.overview div.favourites:nth-child(8) > h2:nth-child(1)::after,
+.favourites .favourites:nth-child(5) .section-header::after {
+    content: "studios";
+    font-style: italic;
+    position: absolute;
+    visibility: visible;
+    text-transform: lowercase;
+    z-index: 2;
+}
+.overview div.favourites:nth-child(8) > h2:nth-child(1)::after {
+    right: 200px;
+}
+
+/*--- User Badges (Thanks to @Anzu for most of the code structure) ---*/
+
+.header > a[href="/user/nony/"].name:after, .container > .activity-entry a[href="/user/nony/"].name:after {
+    /* Me */
+    content: "owner ✪";
+}
+
+.header > .name:after {
+    content: "visitor  ☆";
+}
+
+.header > a[href="/user/gami/"].name:after {
+    content: "pookie <3";
+}
+
+.header > a[href="/user/NovaPM/"].name:after {
+    content: "oomf <3";
+}
+
+.header > .name:after, .container > .activity-entry a[href="/user/nony/"].name:after {
+    background: rgb(1, 1, 1);
+    border-radius: var(--border-radius);
+    color: color-mix(in srgb,rgb(var(--color-blue)) 35%, white);
+    cursor: pointer !important;
+    font-family: var(--font);
+    font-size: 12px;
+    margin-left: 5px;
+    padding: 3px 7px 5px 7px;
+    position: relative;
+    top: -1.5px;
+}
+
+.header > .name[data-v-732ef224]:after {
+    font-size: 11px !important;
+    top: -0.5px !important;
+}
+
+/*--- Replacing User Dropdown Icons ---*/
+
+.user .dropdown .primary-link svg {
+    display: none;
+}
+
+.user .dropdown .primary-link {
+    position: relative;
+    min-height: 19px;
+    margin-top: 2px;
+}
+.user .dropdown .primary-link .label {
+    font-size: 0rem;
+}
+
+/* Profile */
+.user .dropdown .primary-link:nth-child(1) .label::before {
+    position: absolute;
+    font-family: "FontAwesome";
+    font-size: 15px;
+    bottom: 1px;
+    content: "\f2bb";
+}
+
+.user .dropdown .primary-link:nth-child(1) .label::after {
+    position: absolute;
+    left: 30px;
+    bottom: 2px;
+    font-size: 14px;
+    content: "profile";
+    white-space: nowrap;
+}
+
+/* Notifications */
+.user .dropdown .primary-link:nth-child(2) .label::before {
+    position: absolute;
+    bottom: -1px;
+    font-family: "FontAwesome";
+    font-size: 17px;
+    content: "\f0f3";
+}
+
+.user .dropdown .primary-link:nth-child(2) .label::after {
+    position: absolute;
+    left: 30px;
+    bottom: 2.75px;
+    font-size: 14px;
+    content: "notifications";
+    white-space: nowrap;
+}
+
+.user .dropdown .secondary-link:nth-child(1) {
+    position: relative;
+}
+
+.user .dropdown .secondary-link:nth-child(1)::before {
+    content: '';
+    position: absolute;
+    top: -97px;
+    left: 9px;
+    display: block;
+    width: 11px;
+    height: 11px;
+    background-color: rgba(250, 122, 122, 1);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.user:has(.notification-dot) .dropdown .secondary-link:nth-child(1)::before {
+    opacity: 1;
+}
+
+/* Settings */
+.user .dropdown .primary-link:nth-child(3) .label::before {
+    position: absolute;
+    bottom: 0px;
+    font-family: "FontAwesome";
+    font-size: 19px;
+    content: "\f1de";
+}
+
+.user .dropdown .primary-link:nth-child(3) .label::after {
+    position: absolute;
+    left: 30px;
+    bottom: 3px;
+    font-size: 14px;
+    content: "settings";
+    white-space: nowrap;
+}
+
+/* Comments */
+.activity-entry > .wrap > .actions > .action.replies svg {
+    display: none;
+}
+.activity-entry > .wrap > .actions {
+    display: flex;
+}
+.activity-entry > .wrap > .actions > .action.likes {
+    display: inline-block;
+    margin-top: 10px
+}
+.activity-entry > .wrap > .actions > .action.replies {
+    display: inline-block;
+    margin-top: 11px;
+}
+.activity-entry > .wrap > .actions > .action.replies .count {
+    position: relative;
+    bottom: 1px;
+    margin-right: 1px;
+    font-size: 13px;
+}
+.activity-entry > .wrap > .actions > .action.replies::after {
+    display: inline-block;
+    font-family: "bootstrap-icons";
+    font-size: 10px;
+    content: "\F24D";
+    margin-right: 4px;
+    margin-top: -10px;
+}
+
+/* -- extras (username hover popups, following  and cursors ) ---*/
+
+/* Default pointer */
+body {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedNormalSelect.cur'), auto !important;
+}
+
+/* Links, buttons, etc. */
+a, button {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedLinkSelect.cur'), pointer !important;
+}
+
+/* Text input fields */
+input[type="text"], textarea {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedTextSelect.cur'), text !important;
+}
+
+/* Moveable elements */
+.moveable {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedMove.cur'), move !important;
+}
+
+/* Crosshair or precision tools */
+.precision-tool {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedPrecisionSelect.cur'), crosshair !important;
+}
+
+/* Help icon or tooltip triggers */
+.help {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedHelpSelect.cur'), help !important;
+}
+
+/* Handwriting mode */
+.handwriting {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedHandwriting.cur'), auto !important;
+}
+
+/* Horizontal resizing (ew-resize) */
+.resize-x {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedHorizontalResize.cur'), ew-resize !important;
+}
+
+/* Vertical resizing (ns-resize) */
+.resize-y {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedVerticalResize.cur'), ns-resize !important;
+}
+
+/* Diagonal resizes */
+.resize-nwse {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedDiagonalResize1.cur'), nwse-resize !important;
+}
+
+.resize-nesw {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedDiagonalResize2.cur'), nesw-resize !important;
+}
+
+/* Location marker (e.g. map pins or GPS targeting) */
+.location {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedLocationSelect.cur'), crosshair !important;
+}
+
+/* Person-select (optional hover avatar effects?) */
+.person {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedPersonSelect.cur'), pointer !important;
+}
+
+/* Disabled state */
+.disabled {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedUnavailable.cur'), not-allowed !important;
+}
+
+/* Alternate pointer (use creatively if desired) */
+.alternate {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedAlternateSelect.cur'), default !important;
+}
+
+.button[data-v-5fb0ec91], .action.has-label, .time .action[data-v-04d66030], .actions .time .action[data-v-732ef224], .markdown-editor *, .header > .name[data-v-732ef224]:after, .button[data-v-c574a71c], .actions .action[data-v-04d66030], #nav .wrap .search, .search[data-v-62eacfff] svg, .user[data-v-62eacfff], .unfollow[data-v-39573fe2], .edit, .entry-dropdown .el-dropdown-link[data-v-04d66030], .el-checkbox, .el-input-number__decrease, .el-input-number__increase, .el-dropdown-menu__item, span {
+  cursor: url('https://cdn.jsdelivr.net/gh/pseudo-AL/profile-CSS@main/cursor/FormaShadowedLinkSelect.cur'), pointer !important;    
+}
+
+.banner-content .avatar {
+    position: relative;
+}
+
+.banner-content .avatar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.banner-content .name {
+    position: relative;
+}
+
+.banner-content .name:after {
+    position: relative;
+}
+
+.banner-content .name:before {
+    text-align: center;
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: "joined: 2020-06-25 (MST)\A ";
+    line-height: 21px;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(10, 10, 10, 0.9);
+    padding: 7px 12px 8px 12px;
+    border-radius: var(--border-radius);
+    white-space: pre;
+    opacity: 0;
+    transition: opacity var(--master-transition-timer) ease-in-out;
+    pointer-events: none;
+}
+
+.banner-content .name:after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(10, 10, 10, 0.9) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--master-transition-timer) ease-in-out, visibility var(--master-transition-timer) ease-in-out;
+}
+
+.banner-content .name:hover:before {
+    opacity: 1;
+}
+
+.banner-content .name:hover:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.follower-badge {
+    position: relative;
+    color: transparent !important;
+    margin-left: -5px;
+}
+
+.follower-badge::after {
+    display: block;
+    text-align: center;
+    width: 100%;
+    content: "friend ♡";
+    position: absolute;
+    padding: 5px 8px;
+    top: 0;
+    left: 0px;
+    color: white;
+}
+
 
 /*--- Hide Footer ---*/
 #app > div > .footer {
