@@ -1,0 +1,351 @@
+/* Favourites Grid Layout (Overview) */
+.favourites.preview .favourites-wrap:not(.favourites.preview .favourites-wrap.studios) {
+    display: grid !important;
+    grid-gap: 12px !important;
+    column-gap: 12px !important;
+    grid-template-columns: repeat(4, 85px) !important;
+    grid-template-rows: unset !important;
+    grid-auto-rows: minmax(120px, auto) !important;
+    padding: 0 !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 35px !important;
+    background: unset !important;
+    justify-content: center !important;
+    width: 408px !important;
+}
+
+.favourites.preview .favourites-wrap a.favourite:not(.favourites.preview .favourites-wrap.studios a.favourite) {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 60px;
+}
+
+/* Global Favourite Hover Transitions (Subtle version) */
+.favourites a.favourite {
+    filter: var(--cover-saturation);
+    transition: all var(--master-transition-timer) ease-in-out;
+    background-size: 100% !important;
+}
+
+.favourites a.favourite:hover {
+    box-shadow: var(--box-shadow) rgba(var(--color-blue), 0.7);
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+}
+
+/* === Custom Top Anime Styling === */
+.overview .favourites a.favourite[href*="anime/132126"] {
+    grid-column: 1 / 5 !important;
+    background-image: url('https://imgur.com/lUHvwWT.jpeg') !important;
+    background-position: center 75% !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="anime/329"] {
+    grid-column: 1 / 3 !important;
+    background-image: url('https://imgur.com/DrpvOjW.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="anime/109403"] {
+    grid-column: 3 / 5 !important;
+    background-image: url('https://imgur.com/b79OMjl.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+/* === End Custom Top 3 Styling === */
+
+/* === Custom Top Manga 3 Styling === */
+.overview .favourites a.favourite[href*="manga/30081"] {
+    grid-column: 1 / 5 !important;
+    background-image: url('https://imgur.com/2cywTP0.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="manga/99022"] {
+    grid-column: 1 / 3 !important;
+    background-image: url('https://imgur.com/Wq8t3JL.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="manga/145531"] {
+    grid-column: 3 / 5 !important;
+    background-image: url('https://imgur.com/9RIPQfK.png') !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+/* === Custom Studio Styling === */
+
+.overview .favourites a.favourite[href*="studio/44/"] {
+    background-image: url('https://imgur.com/EjlSzhn.gif') !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/2/"] {
+    background-image: url('https://imgur.com/3V4TyeO.gif') !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/6450/"] {
+    background-image: url('https://i.imgur.com/oqNO6Bk.gif') !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/11/"] {
+    background-image: url('https://i.imgur.com/HEWXKTP.gif') !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/803/"] {
+    background-image: url('https://i.imgur.com/mgFHjgD.gif') !important;
+    background-position: center 20% !important;
+    background-size: cover !important;
+}
+
+.overview .favourites a.favourite[href*="studio/6371/"] {
+    background-image: url('https://i.imgur.com/P76zS5L.gif') !important;
+    background-position: center 30% !important;
+    background-size: cover !important;
+}
+
+/* === End Custom Studio Styling === */
+
+/* === Favourite Item Text Positioning === */
+/* Moves text higher off bottom edge */
+.favourites .favourite .name {
+    /* CORRECTED SELECTOR */
+    position: absolute !important;
+    /* Ensure positioning */
+    bottom: 18px !important;
+    /* INCREASED value further (adjust as needed) */
+    left: 5px !important;
+    right: 5px !important;
+    width: calc(100% - 10px) !important;
+    /* Ensure width constraints */
+    text-align: center !important;
+    color: white !important;
+    /* Ensure color */
+    background: none !important;
+    /* Remove default overlay background if any */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8) !important;
+    font-size: 0.9em !important;
+    line-height: 1.2 !important;
+    padding: 2px 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    /* Prevent text blocking hover */
+    /* ADDED FOR DEBUG */
+    /* background-color: lime !important; */
+    /* Remove this line after testing */
+}
+
+/*--- Hide Favs Until Hover Grid Styling ---*/
+
+/* Anime Grid */
+.favourites.preview .favourites-wrap.anime {
+    max-height: 275px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+4) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.favourites.preview .favourites-wrap.anime:hover {
+    max-height: 920px !important;
+}
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+4) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
+}
+.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+4):hover {
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/* Manga Grid */
+.favourites.preview .favourites-wrap.manga {
+    max-height: 275px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+4) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.favourites.preview .favourites-wrap.manga:hover {
+    max-height: 920px !important;
+}
+
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(n+4) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
+}
+
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+4):hover {
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/* Characters Grid */
+.favourites.preview .favourites-wrap.characters {
+    max-height: 275px;
+    overflow: hidden;
+    transition: max-height 0.25s ease-in-out;
+}
+.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.favourites.preview .favourites-wrap.characters:hover {
+    max-height: 790px !important;
+}
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+9) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
+}
+.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9):hover {
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/* Staff Grid */
+.favourites.preview .favourites-wrap.staff {
+    max-height: 275px;
+    overflow: hidden;
+    transition: max-height 0.25s ease-in-out;
+}
+.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+9) {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.favourites.preview .favourites-wrap.staff:hover {
+    max-height: 790px !important;
+}
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(n+9) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
+}
+.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+9):hover {
+    background-size: 108% !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/*--- Favourites Studio Styling (Wrap, Grid) ---*/
+.favourites.preview .favourites-wrap.studios {
+    background: unset !important;
+    margin-top: -5px;
+}
+.overview .favourite.studio {
+    min-height: 120px;
+    font-size: 1.8rem;
+    display: grid;
+    grid-gap: 10px;
+    padding: 2px !important;
+    text-align: center;
+    align-content: center;
+    position: relative;
+    color: transparent;
+    margin-bottom: 12px !important;
+    box-shadow: none !important;
+    transition: color 0.3s ease;
+    /* Smooth fade for text */
+}
+
+/*--- General Studio + Hover Styling ---*/
+.favourites a.favourite.studio::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    z-index: -1;
+    filter: blur(0px) brightness(1.2);
+    transition: filter var(--master-transition-timer) ease-in-out, transform var(--master-transition-timer) ease-in-out;
+    transform: scale(1);
+    border-radius: var(--border-radius) !important;
+}
+
+.favourites a.favourite.studio::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    transition: box-shadow var(--master-transition-timer) ease-in-out !important;
+    border-radius: var(--border-radius) !important;
+}
+
+.favourites a.favourite.studio:hover::before {
+    filter: blur(2px) brightness(0.85);
+    /* Slightly stronger blur for better text contrast */
+    transform: scale(1.01, 1.03);
+}
+
+/* === Show Studio Name on Hover === */
+.overview .favourite.studio:hover {
+    color: #fff !important;
+    /* Or replace with a custom variable like var(--text-color) */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    /* Adds contrast against the background */
+}
+
+/*--- Stuff to Specifically Fix Automail 5-Width Fuckery For Studios ---*/
+.overview .favourites > .favourites-wrap.studios {
+    column-gap: 25px !important;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    height: 800px !important;
+    row-gap: 17px !important;
+    width: 408px !important;
+    padding: 15px !important;
+    padding-top: 20px !important;
+}
+.overview .favourite.studio {
+    width: 376px !important;
+}
+.overview .favourite.studio::after, .favourites .favourite.studio::after {
+    all: unset !important;
+}
