@@ -487,6 +487,7 @@ body:has(.favourites.preview .favourites-wrap.staff:hover) .overview div.favouri
 .overview .favourite.studio::after, .favourites .favourite.studio::after {
     all: unset !important;
 }
+
 /*--- Section Headers for Favourites ---*/
 .overview div.favourites:nth-child(4) > h2:nth-child(1) {
     position: relative;
