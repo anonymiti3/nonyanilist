@@ -55,420 +55,193 @@
     to { pointer-events: auto; }
 }
 
+/*════════ GLOBAL GRID STANDARDIZATION (Fixes overlap) ════════*/
+
+.favourites-wrap.anime,
+.favourites-wrap.manga,
+.favourites-wrap.characters,
+.favourites-wrap.staff{
+    display:grid !important;
+    grid-template-columns:repeat(5,1fr);
+    grid-auto-rows:85px;
+    gap:6px;
+    align-items:start;
+}
+
+.favourites-wrap.anime .favourite,
+.favourites-wrap.manga .favourite,
+.favourites-wrap.characters .favourite,
+.favourites-wrap.staff .favourite{
+    width:100%;
+    height:100%;
+}
+
 /*════════ Anime Grid ════════*/
-.overview div.favourites:nth-child(4) > h2:nth-child(1)::before {
-    content: "";
-    position: absolute;
-    top: 364px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background-image: url("https://i.imgur.com/TfoigpS.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    visibility: visible;
-    z-index: 5;
-    animation: arrowfloat 1.8s linear infinite;
-    animation-delay: 0s !important;
-    opacity: 1;
-    transition: opacity var(--anime-grid-timer) ease-in-out;
+
+.overview div.favourites:nth-child(4) > h2:nth-child(1)::before{
+    content:"";
+    position:absolute;
+    top:364px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:12px;
+    background-image:url("https://i.imgur.com/TfoigpS.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    visibility:visible;
+    z-index:5;
+    animation:arrowfloat 1.8s linear infinite;
+    opacity:1;
+    transition:opacity var(--anime-grid-timer) ease-in-out;
 }
 
-body:has(.favourites.preview .favourites-wrap.anime:hover) .overview div.favourites:nth-child(4) > h2:nth-child(1)::before {
-    opacity: 0;
+body:has(.favourites.preview .favourites-wrap.anime:hover) .overview div.favourites:nth-child(4) > h2:nth-child(1)::before{
+    opacity:0;
 }
 
-.favourites.preview .favourites-wrap.anime {
-    max-height: 367px;
-    overflow: hidden;
-    transition: max-height var(--anime-grid-timer) ease-in-out, border var(--anime-grid-timer) ease-in-out, box-shadow var(--anime-grid-timer) ease-in-out;
-    transition-delay: overflow calc(--anime-grid-timer - 0.05s);
-    border: var(--border) solid rgb(var(--color-blue));
-}
-.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+3) {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity var(--anime-grid-timer) ease-in-out, transform var(--anime-grid-timer) ease-in-out;
-    pointer-events: none;
-}
-.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+7) {
-    transform: translateY(40px);
-}
-.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+11) {
-    transform: translateY(60px);
-}
-.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+15) {
-    transform: translateY(80px);
-}
-.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+19) {
-    transform: translateY(100px);
-}
-.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+23) {
-    transform: translateY(120px);
-}
-.favourites.preview .favourites-wrap.anime:hover {
-    max-height: 1165px !important;
-    overflow: visible;
-}
-.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+3) {
-    opacity: 1;
-    transform: translateY(0);
-    filter: var(--cover-saturation);
-    background-size: 100% !important;
-    transition: opacity var(--anime-grid-timer) ease-in-out, transform var(--anime-grid-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
-    animation: enablePointerEvents 0s calc(var(--anime-grid-timer) - 0.075s) forwards;
-}
-.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+3):nth-child(-n+6) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.01s, transform var(--anime-grid-timer) ease-in-out 0.01s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+7):nth-child(-n+10) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.05s, transform var(--anime-grid-timer) ease-in-out 0.05s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+11):nth-child(-n+14) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.1s, transform var(--anime-grid-timer) ease-in-out 0.1s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+15):nth-child(-n+18) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.15s, transform var(--anime-grid-timer) ease-in-out 0.15s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+19) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.20s, transform var(--anime-grid-timer) ease-in-out 0.20s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+23) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.25s, transform var(--anime-grid-timer) ease-in-out 0.25s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+3):hover {
-    background-size: var(--background-zoom) !important;
-    filter: var(--cover-saturation-hover);
-    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+.favourites.preview .favourites-wrap.anime{
+    max-height:460px;
+    overflow:hidden;
+    transition:max-height var(--anime-grid-timer) ease-in-out,border var(--anime-grid-timer) ease-in-out,box-shadow var(--anime-grid-timer) ease-in-out;
+    border:var(--border) solid rgb(var(--color-blue));
 }
 
-/* Extra Anime Favourite */
-
-.overview .about a[href="https://anilist.co/anime/154587/Sousou-no-Frieren/"] {
-    position: absolute;
-    top: calc(var(--about-height) + 1401px);
-    left: 307px;
-    width: 85px;
-    height: 120px;
-    background-image: url(https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg);
-    background-size: 100%;
-    background-position: center;
-    border-radius: var(--border-radius);
-    opacity: 0;
-    z-index: 6;
-    visibility: hidden;
-    filter: var(--cover-saturation);
-    transition: filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out, opacity var(--anime-grid-timer) ease-in-out, transform var(--anime-grid-timer) ease-in-out, visibility 0.06s ease-in-out;
-    transform: translateY(120px);
-}
-
-.overview .about a[href="https://anilist.co/anime/154587/Sousou-no-Frieren/"]:hover {
-    box-shadow: var(--box-shadow) #a9e588;
-    background-size: var(--background-zoom) !important;
-    filter: var(--cover-saturation-hover);
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-body:has(.favourites.preview .favourites-wrap.anime:hover) .overview .about a[href="https://anilist.co/anime/154587/Sousou-no-Frieren/"] {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.25s, transform var(--anime-grid-timer) ease-in-out 0.25s, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
-}
-
-body:has(.overview .about a[href="https://anilist.co/anime/154587/Sousou-no-Frieren/"]:hover) .favourites.preview .favourites-wrap.anime {
-    max-height: 1165px !important;
-    border: var(--border) solid rgb(var(--color-blue-dim));
-}
-
-body:has(.overview .about a[href="https://anilist.co/anime/154587/Sousou-no-Frieren/"]:hover) .favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+3) {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-body:has(.overview .about a[href="https://anilist.co/anime/154587/Sousou-no-Frieren/"]:hover) .overview div.favourites:nth-child(4) > h2:nth-child(1)::before {
-    opacity: 0;
-}
-
-.overview .about a[href="frierentooltip"]::before {
-    text-align: center;
-    content: "sousou no frieren";
-    white-space: nowrap;
-    font-weight: 700;
-    position: absolute;
-    top: calc(var(--about-height) + 1380px);
-    left: 349px;
-    transform: translate(-50%, -50%);
-    font-size: 13px;
-    background: rgba(10, 10, 10, 0.9);
-    padding: 6px 11px 6px 12px;
-    border-radius: var(--border-radius);
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.26s ease-in-out;
-    pointer-events: none;
-    color: white;
-    z-index: 15;
-}
-
-.overview .about a[href="frierentooltip"]::after {
-    content: "";
-    position: absolute;
-    top: calc(var(--about-height) + 1401px);
-    left: 349px;
-    transform: translate(-50%, -50%);
-    border-width: 6px;
-    border-style: solid;
-    border-color: rgba(10, 10, 10, 0.9) transparent transparent transparent;
-    opacity: 0;
-    transition: opacity 0.26s ease-in-out;
-    z-index: 15;
-    pointer-events: none;
-}
-
-body:has(.overview .about a[href="https://anilist.co/anime/154587/Sousou-no-Frieren/"]:hover) .overview .about a[href="frierentooltip"]::before, body:has(.overview .about a[href="https://anilist.co/anime/154587/Sousou-no-Frieren/"]:hover) .overview .about a[href="frierentooltip"]::after {
-    opacity: 1;   
+.favourites.preview .favourites-wrap.anime:hover{
+    max-height:1200px !important;
+    overflow:visible;
 }
 
 /*════════ Manga Grid ════════*/
-.overview div.favourites:nth-child(5) > h2:nth-child(1)::before {
-    content: "";
-    position: absolute;
-    top: 364px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background-image: url("https://i.imgur.com/TfoigpS.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    visibility: visible;
-    z-index: 5;
-    animation: arrowfloat 1.8s linear infinite;
-    animation-delay: 0s !important;
-    opacity: 1;
-    transition: opacity var(--manga-grid-timer) ease-in-out;
+
+.overview div.favourites:nth-child(5) > h2:nth-child(1)::before{
+    content:"";
+    position:absolute;
+    top:364px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:12px;
+    background-image:url("https://i.imgur.com/TfoigpS.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    visibility:visible;
+    z-index:5;
+    animation:arrowfloat 1.8s linear infinite;
+    opacity:1;
+    transition:opacity var(--manga-grid-timer) ease-in-out;
 }
 
-body:has(.favourites.preview .favourites-wrap.manga:hover) .overview div.favourites:nth-child(5) > h2:nth-child(1)::before {
-    opacity: 0;
+body:has(.favourites.preview .favourites-wrap.manga:hover) .overview div.favourites:nth-child(5) > h2:nth-child(1)::before{
+    opacity:0;
 }
 
-.favourites.preview .favourites-wrap.manga {
-    max-height: 367px;
-    overflow: hidden;
-    transition: max-height var(--manga-grid-timer) ease-in-out, border var(--manga-grid-timer) ease-in-out, box-shadow var(--manga-grid-timer) ease-in-out;
-    border: var(--border) solid rgb(var(--color-blue));
+.favourites.preview .favourites-wrap.manga{
+    max-height:460px;
+    overflow:hidden;
+    transition:max-height var(--manga-grid-timer) ease-in-out,border var(--manga-grid-timer) ease-in-out,box-shadow var(--manga-grid-timer) ease-in-out;
+    border:var(--border) solid rgb(var(--color-blue));
 }
-.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+3) {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity var(--manga-grid-timer) ease-in-out, transform var(--manga-grid-timer) ease-in-out;
-    pointer-events: none;
-}
-.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+7) {
-    transform: translateY(40px);
-}
-.favourites.preview .favourites-wrap.manga:hover {
-    max-height: 630px !important;
-}
-.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(n+3) {
-    opacity: 1;
-    transform: translateY(0);
-    filter: var(--cover-saturation);
-    background-size: 100% !important;
-    transition: opacity var(--manga-grid-timer) ease-in-out, transform var(--manga-grid-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
-    animation: enablePointerEvents 0s calc(var(--manga-grid-timer) - 0.075s) forwards;
-}
-.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(n+3):nth-child(-n+6) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.01s, transform var(--anime-grid-timer) ease-in-out 0.01s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(n+7) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.05s, transform var(--anime-grid-timer) ease-in-out 0.05s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+3):hover {
-    background-size: var(--background-zoom) !important;
-    filter: var(--cover-saturation-hover);
-    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+
+.favourites.preview .favourites-wrap.manga:hover{
+    max-height:780px !important;
 }
 
 /*════════ Characters Grid ════════*/
-.overview div.favourites:nth-child(6) > h2:nth-child(1)::before {
-    content: "";
-    position: absolute;
-    top: 302px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background-image: url("https://i.imgur.com/TfoigpS.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    visibility: visible;
-    z-index: 5;
-    animation: arrowfloat 1.8s linear infinite;
-    animation-delay: 0s !important;
-    opacity: 1;
-    transition: opacity var(--characters-grid-timer) ease-in-out;
+
+.overview div.favourites:nth-child(6) > h2:nth-child(1)::before{
+    content:"";
+    position:absolute;
+    top:302px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:12px;
+    background-image:url("https://i.imgur.com/TfoigpS.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    visibility:visible;
+    z-index:5;
+    animation:arrowfloat 1.8s linear infinite;
+    opacity:1;
+    transition:opacity var(--characters-grid-timer) ease-in-out;
 }
 
-body:has(.favourites.preview .favourites-wrap.characters:hover) .overview div.favourites:nth-child(6) > h2:nth-child(1)::before {
-    opacity: 0;
+body:has(.favourites.preview .favourites-wrap.characters:hover) .overview div.favourites:nth-child(6) > h2:nth-child(1)::before{
+    opacity:0;
 }
 
-.favourites.preview .favourites-wrap.characters {
-    max-height: 305px;
-    overflow: hidden;
-    transition: max-height var(--characters-grid-timer) ease-in-out, border var(--characters-grid-timer) ease-in-out, box-shadow var(--characters-grid-timer) ease-in-out;
-    border: var(--border) solid rgb(var(--color-blue));
+.favourites.preview .favourites-wrap.characters{
+    max-height:360px;
+    overflow:hidden;
+    transition:max-height var(--characters-grid-timer) ease-in-out,border var(--characters-grid-timer) ease-in-out,box-shadow var(--characters-grid-timer) ease-in-out;
+    border:var(--border) solid rgb(var(--color-blue));
 }
-.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9) {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity var(--characters-grid-timer) ease-in-out, transform var(--characters-grid-timer) ease-in-out;
-    pointer-events: none;
-}
-.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+13) {
-    transform: translateY(40px);
-}
-.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+17) {
-    transform: translateY(60px);
-}
-.favourites.preview .favourites-wrap.characters:hover {
-    max-height: 680px !important;
-}
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+9) {
-    opacity: 1;
-    transform: translateY(0);
-    filter: var(--cover-saturation);
-    background-size: 100% !important;
-    transition: opacity var(--characters-grid-timer) ease-in-out, transform var(--characters-grid-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
-    animation: enablePointerEvents 0s calc(var(--characters-grid-timer) - 0.075s) forwards;
-}
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+13):nth-child(-n+16) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.05s, transform var(--anime-grid-timer) ease-in-out 0.05s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+17) {
-    transition: opacity var(--anime-grid-timer) ease-in-out 0.1s, transform var(--anime-grid-timer) ease-in-out 0.1s, filter var(--master-transition-timer) ease-in-out 0s, box-shadow var(--master-transition-timer) ease-in-out 0s, background-size var(--master-transition-timer) ease-in-out 0s;
-}
-.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9):hover {
-    background-size: var(--background-zoom) !important;
-    filter: var(--cover-saturation-hover);
-    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+
+.favourites.preview .favourites-wrap.characters:hover{
+    max-height:780px !important;
 }
 
 /*════════ Staff Grid ════════*/
-.overview div.favourites:nth-child(7) > h2:nth-child(1)::before {
-    content: "";
-    position: absolute;
-    top: 302px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background-image: url("https://i.imgur.com/TfoigpS.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    visibility: visible;
-    z-index: 5;
-    animation: arrowfloat 1.8s linear infinite;
-    animation-delay: 0s !important;
-    opacity: 1;
-    transition: opacity var(--staff-grid-timer) ease-in-out;
+
+.overview div.favourites:nth-child(7) > h2:nth-child(1)::before{
+    content:"";
+    position:absolute;
+    top:302px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:12px;
+    background-image:url("https://i.imgur.com/TfoigpS.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    visibility:visible;
+    z-index:5;
+    animation:arrowfloat 1.8s linear infinite;
+    opacity:1;
+    transition:opacity var(--staff-grid-timer) ease-in-out;
 }
 
-body:has(.favourites.preview .favourites-wrap.staff:hover) .overview div.favourites:nth-child(7) > h2:nth-child(1)::before {
-    opacity: 0;
+body:has(.favourites.preview .favourites-wrap.staff:hover) .overview div.favourites:nth-child(7) > h2:nth-child(1)::before{
+    opacity:0;
 }
 
-.favourites.preview .favourites-wrap.staff {
-    max-height: 305px;
-    overflow: hidden;
-    transition: max-height var(--staff-grid-timer) ease-in-out, border var(--staff-grid-timer) ease-in-out, box-shadow var(--staff-grid-timer) ease-in-out;
-    border: var(--border) solid rgb(var(--color-blue));
-}
-.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+9) {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity var(--staff-grid-timer) ease-in-out, transform var(--staff-grid-timer) ease-in-out;
-    pointer-events: none;
-}
-.favourites.preview .favourites-wrap.staff:hover {
-    max-height: 420px !important;
-}
-.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(n+9) {
-    opacity: 1;
-    transform: translateY(0);
-    filter: var(--cover-saturation);
-    background-size: 100% !important;
-    transition: opacity var(--staff-grid-timer) ease-in-out, transform var(--staff-grid-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out, background-size var(--master-transition-timer) ease-in-out;
-    animation: enablePointerEvents 0s calc(var(--staff-grid-timer) - 0.075s) forwards;
-}
-.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+9):hover {
-    background-size: var(--background-zoom) !important;
-    filter: var(--cover-saturation-hover);
-    transition: background-size var(--master-transition-timer) ease-in-out, filter var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
+.favourites.preview .favourites-wrap.staff{
+    max-height:360px;
+    overflow:hidden;
+    transition:max-height var(--staff-grid-timer) ease-in-out,border var(--staff-grid-timer) ease-in-out,box-shadow var(--staff-grid-timer) ease-in-out;
+    border:var(--border) solid rgb(var(--color-blue));
 }
 
-.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+13) {
-    visibility: hidden;
+.favourites.preview .favourites-wrap.staff:hover{
+    max-height:780px !important;
 }
 
-/*--- Favourites Studio Styling (Wrap, Grid) ---*/
-.favourites.preview .favourites-wrap.studios {
-    background: var(--foreground) !important;
-    margin-top: -5px;
-    border: var(--border) solid rgb(var(--color-blue));
-    transition: border var(--master-transition-timer) ease-in-out, box-shadow var(--master-transition-timer) ease-in-out;
-}
-.overview .favourite.studio {
-    min-height: 150px;
-    font-size: 1.8rem;
-    display: grid;
-    grid-gap: 10px;
-    padding: 2px !important;
-    text-align: center;
-    align-content: center;
-    position: relative;
-    color: transparent;
-    margin-bottom: 12px !important;
-    box-shadow: none !important;
+/*════════ Studios  ════════*/
+
+.favourites.preview .favourites-wrap.studios{
+    background:var(--foreground)!important;
+    margin-top:-5px;
+    border:var(--border) solid rgb(var(--color-blue));
+    transition:border var(--master-transition-timer) ease-in-out,box-shadow var(--master-transition-timer) ease-in-out;
 }
 
-/*--- General Studio + Hover Styling ---*/
-.favourites a.favourite.studio::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: inherit;
-    z-index: -1;
-    transition: filter var(--master-transition-timer) ease-in-out, transform var(--master-transition-timer) ease-in-out;
-    transform: scale(1);
-    border-radius: var(--border-radius) !important;
-}
-
-.favourites a.favourite.studio::after {
-    content: "" !important; 
-    display: block !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 0 !important;
-    pointer-events: none !important;
-    transition: box-shadow var(--master-transition-timer) ease-in-out !important;
-    border-radius: var(--border-radius) !important;
+.overview .favourite.studio{
+    min-height:150px;
+    font-size:1.8rem;
+    display:grid;
+    grid-gap:10px;
+    padding:2px!important;
+    text-align:center;
+    align-content:center;
+    position:relative;
+    color:rgb(var(--color-text));
+    margin-bottom:12px!important;
+    box-shadow:none!important;
 }
 
 /*--- Stuff to Specifically Fix Automail 5-Width Fuckery For Studios ---*/
@@ -484,9 +257,7 @@ body:has(.favourites.preview .favourites-wrap.staff:hover) .overview div.favouri
 .overview .favourite.studio {
     width: 376px !important;
 }
-.overview .favourite.studio::after, .favourites .favourite.studio::after {
-    all: unset !important;
-}
+
 
 /*--- Section Headers for Favourites ---*/
 .overview div.favourites:nth-child(4) > h2:nth-child(1) {
