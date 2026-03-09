@@ -1,0 +1,643 @@
+/*--- Favourites Grid Layout (Studios excluded) ---*/
+.favourites.preview .favourites-wrap:not(.favourites.preview .favourites-wrap.studios) {
+    position: relative;
+    display: grid !important;
+    grid-gap: 12px !important;
+    column-gap: 12px !important;
+    grid-template-columns: repeat(4, 85px) !important;
+    grid-template-rows: unset !important;  
+    grid-auto-rows: minmax(120px, auto) !important; 
+    padding: 0 !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 40px !important;
+    background: var(--foreground) !important;
+    justify-content: center !important;
+    width: 408px !important;
+}
+.favourites.preview .favourites-wrap a.favourite:not(.favourites.preview .favourites-wrap.studios a.favourite) {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 60px;
+}
+
+/*--- Global Favourite Hover Transitions (with backup box-shadow that takes --color-blue) ---*/
+.favourites a.favourite {
+    filter: var(--cover-saturation);
+    transition: all var(--master-transition-timer) ease-in-out;
+    background-size: 100% !important;
+    background-color: transparent !important;
+}
+
+.favourites a.favourite:hover {
+    box-shadow: var(--box-shadow) color-mix(in srgb,rgb(var(--color-blue)) var(--box-shadow-mix), white);
+    background-size: var(--background-zoom) !important;
+    filter: var(--cover-saturation-hover);
+}
+
+.favourites.preview a.favourite {
+    height: unset !important;
+}
+/*--- Hide Favs Until Hover Grid Styling ---*/
+
+@keyframes arrowfloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(var(--arrow-float));
+    }
+}
+
+@keyframes enablePointerEvents {
+    to { pointer-events: auto; }
+}
+
+/*════════ Anime Grid  ════════*/
+:root {
+    --anime-grid-timer: 0.6s; /* Slower animation for smoother reveal */
+}
+
+.overview div.favourites:nth-child(4) > h2:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    top: 302px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-image: url("https://i.imgur.com/TfoigpS.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    visibility: visible;
+    z-index: 5;
+    animation: arrowfloat 1.8s linear infinite;
+    animation-delay: 0s !important;
+    opacity: 1;
+    transition: opacity var(--anime-grid-timer) ease-in-out;
+}
+
+body:has(.favourites.preview .favourites-wrap.anime:hover) 
+.overview div.favourites:nth-child(4) > h2:nth-child(1)::before {
+    opacity: 0;
+}
+
+.favourites.preview .favourites-wrap.anime {
+    max-height: 305px; 
+    overflow: hidden;
+    transition: max-height var(--anime-grid-timer) ease-in-out, 
+                border var(--anime-grid-timer) ease-in-out, 
+                box-shadow var(--anime-grid-timer) ease-in-out;
+    border: var(--border) solid rgb(var(--color-blue));
+}
+
+.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+9) {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity var(--anime-grid-timer) ease-in-out,
+                transform var(--anime-grid-timer) ease-in-out;
+}
+
+/* Progressive Y offsets for later items */
+.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+13) { transform: translateY(40px); }
+.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+17) { transform: translateY(60px); }
+.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+21) { transform: translateY(80px); }
+
+.favourites.preview .favourites-wrap.anime:hover {
+    max-height: 1165px !important; 
+    overflow: visible;
+}
+
+/* Staggered reveal for smoother animation */
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(9) { transition-delay: 0s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(10) { transition-delay: 0.05s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(11) { transition-delay: 0.1s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(12) { transition-delay: 0.15s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(13) { transition-delay: 0.2s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(14) { transition-delay: 0.25s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(15) { transition-delay: 0.3s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(16) { transition-delay: 0.35s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(17) { transition-delay: 0.4s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(18) { transition-delay: 0.45s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(19) { transition-delay: 0.5s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(20) { transition-delay: 0.55s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(21) { transition-delay: 0.6s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(22) { transition-delay: 0.65s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(23) { transition-delay: 0.7s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(24) { transition-delay: 0.75s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(25) { transition-delay: 0.8s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(26) { transition-delay: 0.85s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(27) { transition-delay: 0.9s; }
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(28) { transition-delay: 0.95s; }
+
+/* Reveal the items */
+.favourites.preview .favourites-wrap.anime:hover .favourite.media {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/*════════ Manga Grid ════════*/
+
+:root {
+    --manga-grid-timer: 0.6s; /* Slower animation for smoother reveal */
+}
+
+.overview div.favourites:nth-child(5) > h2:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    top: 302px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-image: url("https://i.imgur.com/TfoigpS.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    visibility: visible;
+    z-index: 5;
+    animation: arrowfloat 1.8s linear infinite;
+    animation-delay: 0s !important;
+    opacity: 1;
+    transition: opacity var(--manga-grid-timer) ease-in-out;
+}
+
+body:has(.favourites.preview .favourites-wrap.manga:hover) 
+.overview div.favourites:nth-child(5) > h2:nth-child(1)::before {
+    opacity: 0;
+}
+
+.favourites.preview .favourites-wrap.manga {
+    max-height: 305px;
+    overflow: hidden;
+    transition: max-height var(--manga-grid-timer) ease-in-out, 
+                border var(--manga-grid-timer) ease-in-out, 
+                box-shadow var(--manga-grid-timer) ease-in-out;
+    border: var(--border) solid rgb(var(--color-blue));
+}
+
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+9) {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity var(--manga-grid-timer) ease-in-out,
+                transform var(--manga-grid-timer) ease-in-out;
+}
+
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+13) { transform: translateY(40px); }
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+17) { transform: translateY(60px); }
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+21) { transform: translateY(80px); }
+
+.favourites.preview .favourites-wrap.manga:hover {
+    max-height: 1165px !important; 
+    overflow: visible;
+}
+
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(n+9) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    pointer-events: auto;
+    transition: opacity var(--manga-grid-timer) ease-in-out,
+                transform var(--manga-grid-timer) ease-in-out,
+                filter var(--master-transition-timer) ease-in-out,
+                box-shadow var(--master-transition-timer) ease-in-out,
+                background-size var(--master-transition-timer) ease-in-out;
+    animation: enablePointerEvents 0s calc(var(--manga-grid-timer) - 0.075s) forwards;
+}
+
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(9)  { transition-delay: 0s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(10) { transition-delay: 0.05s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(11) { transition-delay: 0.10s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(12) { transition-delay: 0.15s; }
+
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(13) { transition-delay: 0.20s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(14) { transition-delay: 0.25s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(15) { transition-delay: 0.30s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(16) { transition-delay: 0.35s; }
+
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(17) { transition-delay: 0.40s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(18) { transition-delay: 0.45s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(19) { transition-delay: 0.50s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(20) { transition-delay: 0.55s; }
+
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(21) { transition-delay: 0.60s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(22) { transition-delay: 0.65s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(23) { transition-delay: 0.70s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(24) { transition-delay: 0.75s; }
+
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(25) { transition-delay: 0.80s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(26) { transition-delay: 0.85s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(27) { transition-delay: 0.90s; }
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(28) { transition-delay: 0.95s; }
+
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+9):hover {
+    background-size: var(--background-zoom) !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out,
+                filter var(--master-transition-timer) ease-in-out,
+                box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/*════════ Characters Grid ════════*/
+
+:root {
+    --characters-grid-timer: 0.6s; /* Slower animation for smoother reveal */
+}
+
+.overview div.favourites:nth-child(6) > h2:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    top: 302px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-image: url("https://i.imgur.com/TfoigpS.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    visibility: visible;
+    z-index: 5;
+    animation: arrowfloat 1.8s linear infinite;
+    animation-delay: 0s !important;
+    opacity: 1;
+    transition: opacity var(--characters-grid-timer) ease-in-out;
+}
+
+body:has(.favourites.preview .favourites-wrap.characters:hover) 
+.overview div.favourites:nth-child(6) > h2:nth-child(1)::before {
+    opacity: 0;
+}
+
+.favourites.preview .favourites-wrap.characters {
+    max-height: 305px;
+    overflow: hidden;
+    transition: max-height var(--characters-grid-timer) ease-in-out,
+                border var(--characters-grid-timer) ease-in-out,
+                box-shadow var(--characters-grid-timer) ease-in-out;
+    border: var(--border) solid rgb(var(--color-blue));
+}
+
+.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9) {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--characters-grid-timer) ease-in-out,
+                transform var(--characters-grid-timer) ease-in-out;
+    pointer-events: none;
+}
+
+.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+13) { transform: translateY(40px); }
+.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+17) { transform: translateY(60px); }
+.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+21) { transform: translateY(80px); }
+
+.favourites.preview .favourites-wrap.characters:hover {
+    max-height: 1165px !important;
+}
+
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+9) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    pointer-events: auto;
+    transition: opacity var(--characters-grid-timer) ease-in-out,
+                transform var(--characters-grid-timer) ease-in-out,
+                filter var(--master-transition-timer) ease-in-out,
+                box-shadow var(--master-transition-timer) ease-in-out,
+                background-size var(--master-transition-timer) ease-in-out;
+    animation: enablePointerEvents 0s calc(var(--characters-grid-timer) - 0.075s) forwards;
+}
+
+/* staggered reveal (same timing system used in anime/manga) */
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(9)  { transition-delay: 0s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(10) { transition-delay: 0.05s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(11) { transition-delay: 0.10s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(12) { transition-delay: 0.15s; }
+
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(13) { transition-delay: 0.20s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(14) { transition-delay: 0.25s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(15) { transition-delay: 0.30s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(16) { transition-delay: 0.35s; }
+
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(17) { transition-delay: 0.40s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(18) { transition-delay: 0.45s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(19) { transition-delay: 0.50s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(20) { transition-delay: 0.55s; }
+
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(21) { transition-delay: 0.60s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(22) { transition-delay: 0.65s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(23) { transition-delay: 0.70s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(24) { transition-delay: 0.75s; }
+
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(25) { transition-delay: 0.80s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(26) { transition-delay: 0.85s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(27) { transition-delay: 0.90s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(28) { transition-delay: 0.95s; }
+
+.favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9):hover {
+    background-size: var(--background-zoom) !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out,
+                filter var(--master-transition-timer) ease-in-out,
+                box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/*════════ Staff Grid ════════*/
+
+:root {
+    --staff-grid-timer: 0.6s; /* Slower animation for smoother reveal */
+}
+
+.overview div.favourites:nth-child(7) > h2:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    top: 302px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-image: url("https://i.imgur.com/TfoigpS.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    visibility: visible;
+    z-index: 5;
+    animation: arrowfloat 1.8s linear infinite;
+    animation-delay: 0s !important;
+    opacity: 1;
+    transition: opacity var(--staff-grid-timer) ease-in-out;
+}
+
+/* Hide arrow on hover */
+body:has(.favourites.preview .favourites-wrap.staff:hover) 
+.overview div.favourites:nth-child(7) > h2:nth-child(1)::before {
+    opacity: 0;
+}
+
+.favourites.preview .favourites-wrap.staff {
+    max-height: 305px;
+    overflow: hidden;
+    transition: max-height var(--staff-grid-timer) ease-in-out,
+                border var(--staff-grid-timer) ease-in-out,
+                box-shadow var(--staff-grid-timer) ease-in-out;
+    border: var(--border) solid rgb(var(--color-blue));
+}
+
+.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+9) {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--staff-grid-timer) ease-in-out,
+                transform var(--staff-grid-timer) ease-in-out;
+    pointer-events: none;
+}
+
+.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+13) { transform: translateY(40px); }
+.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+17) { transform: translateY(60px); }
+.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+21) { transform: translateY(80px); }
+
+.favourites.preview .favourites-wrap.staff:hover {
+    max-height: 1165px !important;
+}
+
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(n+9) {
+    opacity: 1;
+    transform: translateY(0);
+    filter: var(--cover-saturation);
+    background-size: 100% !important;
+    pointer-events: auto;
+    transition: opacity var(--staff-grid-timer) ease-in-out,
+                transform var(--staff-grid-timer) ease-in-out,
+                filter var(--master-transition-timer) ease-in-out,
+                box-shadow var(--master-transition-timer) ease-in-out,
+                background-size var(--master-transition-timer) ease-in-out;
+    animation: enablePointerEvents 0s calc(var(--staff-grid-timer) - 0.075s) forwards;
+}
+
+/* staggered reveal */
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(9)  { transition-delay: 0s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(10) { transition-delay: 0.05s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(11) { transition-delay: 0.10s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(12) { transition-delay: 0.15s; }
+
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(13) { transition-delay: 0.20s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(14) { transition-delay: 0.25s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(15) { transition-delay: 0.30s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(16) { transition-delay: 0.35s; }
+
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(17) { transition-delay: 0.40s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(18) { transition-delay: 0.45s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(19) { transition-delay: 0.50s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(20) { transition-delay: 0.55s; }
+
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(21) { transition-delay: 0.60s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(22) { transition-delay: 0.65s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(23) { transition-delay: 0.70s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(24) { transition-delay: 0.75s; }
+
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(25) { transition-delay: 0.80s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(26) { transition-delay: 0.85s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(27) { transition-delay: 0.90s; }
+.favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(28) { transition-delay: 0.95s; }
+
+.favourites.preview .favourites-wrap.staff .favourite.staff:nth-child(n+9):hover {
+    background-size: var(--background-zoom) !important;
+    filter: var(--cover-saturation-hover);
+    transition: background-size var(--master-transition-timer) ease-in-out,
+                filter var(--master-transition-timer) ease-in-out,
+                box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+/* === Studios Grid (Vertical, preview + hover expansion) === */
+.favourites.preview .favourites-wrap.studios {
+    display: grid;
+    grid-template-columns: 1fr; /* vertical stack */
+    grid-auto-rows: 140px;      /* each studio height */
+    gap: 12px;
+    background: var(--foreground) !important; /* dark background */
+    border: var(--border) solid rgb(var(--color-blue)); /* outline */
+    border-radius: var(--border-radius);
+    height: auto !important;     /* let max-height and content dictate size */
+    max-height: 440px !important; /* preview height for 2 studios */
+    padding-bottom: 50px; /* extra space so arrow isn't cut off */
+    overflow: hidden;
+    position: relative;
+    transition: max-height var(--anime-grid-timer) ease-in-out,
+                border var(--anime-grid-timer) ease-in-out,
+                box-shadow var(--anime-grid-timer) ease-in-out;
+}
+
+/*════════ Studios Arrow  ════════*/
+.favourites.preview .favourites-wrap.studios::after {
+    content: "";
+    position: absolute;
+    bottom: 15px;             /* above wrapper bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-image: url("https://i.imgur.com/TfoigpS.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10;
+    animation: arrowfloat 1.8s linear infinite;
+    opacity: 1;
+    pointer-events: none;      /* so it doesn’t block hover */
+    transition: opacity var(--anime-grid-timer) ease-in-out;
+}
+
+/* Hide arrow on hover */
+.favourites.preview .favourites-wrap.studios:hover::after {
+    opacity: 0;
+}
+
+/* Studio items */
+.overview .favourite.studio {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    color: transparent;
+    min-height: 140px;
+    border-radius: var(--border-radius);
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Dark overlay */
+.favourites a.favourite.studio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    z-index: -1;
+    filter: brightness(0.85);
+    border-radius: var(--border-radius);
+    transition: filter var(--master-transition-timer) ease-in-out,
+                transform var(--master-transition-timer) ease-in-out;
+}
+
+/* Hover overlay */
+.favourites a.favourite.studio:hover::before {
+    filter: brightness(1);
+    transform: scale(1.01, 1.03);
+}
+
+/* Show text on hover */
+.overview .favourite.studio:hover {
+    color: #fff !important;
+    text-shadow: 0 0 5px rgba(0,0,0,0.6);
+}
+
+/* Initially hide all items after the first 2 */
+.favourites.preview .favourites-wrap.studios .favourite.studio:nth-child(n+3) {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity var(--anime-grid-timer) ease-in-out,
+                transform var(--anime-grid-timer) ease-in-out;
+}
+
+/* Stagger hidden items */
+.favourites.preview .favourites-wrap.studios .favourite.studio:nth-child(n+4) { transform: translateY(40px); }
+.favourites.preview .favourites-wrap.studios .favourite.studio:nth-child(n+5) { transform: translateY(60px); }
+
+/* Hover: expand container and show all studios */
+.favourites.preview .favourites-wrap.studios:hover {
+    max-height: 1200px; /* enough to show all rows */
+    overflow: visible;  /* allow full expansion */
+}
+
+/* Reveal hidden studios on hover */
+.favourites.preview .favourites-wrap.studios:hover .favourite.studio:nth-child(n+3) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: 
+        opacity var(--anime-grid-timer) ease-in-out,
+        transform var(--anime-grid-timer) ease-in-out;
+}
+
+/* Stagger reveal delays */
+.favourites.preview .favourites-wrap.studios:hover .favourite.studio:nth-child(n+3):nth-child(-n+4) { transition-delay: 0.05s; }
+.favourites.preview .favourites-wrap.studios:hover .favourite.studio:nth-child(n+5):nth-child(-n+6) { transition-delay: 0.10s; }
+
+/* Background images for studios */
+.overview .favourites a.favourite[href*="studio/44/"] { background-image: url('https://imgur.com/EjlSzhn.gif') !important; }
+.overview .favourites a.favourite[href*="studio/2/"] { background-image: url('https://imgur.com/3V4TyeO.gif') !important; }
+.overview .favourites a.favourite[href*="studio/6450/"] { background-image: url('https://i.imgur.com/oqNO6Bk.gif') !important; }
+.overview .favourites a.favourite[href*="studio/11/"] { background-image: url('https://i.imgur.com/HEWXKTP.gif') !important; }
+.overview .favourites a.favourite[href*="studio/803/"] { background-image: url('https://i.imgur.com/mgFHjgD.gif') !important; background-position: center 20% !important; }
+.overview .favourites a.favourite[href*="studio/6371/"] { background-image: url('https://i.imgur.com/P76zS5L.gif') !important; background-position: center 30% !important; }
+
+/*--- Stuff to Specifically Fix Automail 5-Width Fuckery For Studios ---*/
+.overview .favourites > .favourites-wrap.studios {
+    column-gap: 25px !important;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    height: auto !important;
+    max-height: 360px !important;  
+    row-gap: 25px !important;
+    width: 408px !important;
+    padding: 15px !important;
+    padding-top: 20px !important;
+    transition: max-height var(--anime-grid-timer) ease-in-out; 
+}
+
+/* Expand on hover */
+.favourites.preview .favourites-wrap.studios:hover {
+    max-height: 1200px !important;  
+}
+
+.overview .favourite.studio {
+    width: 376px !important;
+}
+
+.overview .favourite.studio::after, .favourites .favourite.studio::after {
+    all: unset !important;
+}
+
+/*--- Section Headers for Favourites ---*/
+.overview div.favourites:nth-child(4) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(5) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(6) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(6) > h2:nth-child(1)::after {
+    top: 11px;
+    right: 96px;
+}
+.overview div.favourites:nth-child(7) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(7) > h2:nth-child(1)::after {
+    top: 11px;
+    right: 116px;
+}
+.overview div.favourites:nth-child(8) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(8) > h2:nth-child(1)::after {
+    top: 11px;
+    right: 149px;
+}
+/*--- Fix Margins for Titles/Wraps ---*/
+.overview div.favourites h2:not(.favourites:nth-child(4) > h2:nth-child(1)) {
+    margin-top: -25px;
+}
