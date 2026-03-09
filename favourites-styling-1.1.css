@@ -81,13 +81,13 @@ body:has(.favourites.preview .favourites-wrap.anime:hover) .overview div.favouri
 }
 
 .favourites.preview .favourites-wrap.anime {
-    max-height: 367px;
+    max-height: 520px; 
     overflow: hidden;
     transition: max-height var(--anime-grid-timer) ease-in-out, border var(--anime-grid-timer) ease-in-out, box-shadow var(--anime-grid-timer) ease-in-out;
     transition-delay: overflow calc(--anime-grid-timer - 0.05s);
     border: var(--border) solid rgb(var(--color-blue));
 }
-.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+3) {
+.favourites.preview .favourites-wrap.anime .favourite.media:nth-child(n+9) {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity var(--anime-grid-timer) ease-in-out, transform var(--anime-grid-timer) ease-in-out;
@@ -109,10 +109,10 @@ body:has(.favourites.preview .favourites-wrap.anime:hover) .overview div.favouri
     transform: translateY(120px);
 }
 .favourites.preview .favourites-wrap.anime:hover {
-    max-height: 1165px !important;
+    max-height: 1400px !important;
     overflow: visible;
 }
-.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+3) {
+.favourites.preview .favourites-wrap.anime:hover .favourite.media:nth-child(n+9) {
     opacity: 1;
     transform: translateY(0);
     filter: var(--cover-saturation);
@@ -171,12 +171,12 @@ body:has(.favourites.preview .favourites-wrap.manga:hover) .overview div.favouri
 }
 
 .favourites.preview .favourites-wrap.manga {
-    max-height: 367px;
+    max-height: 520px;
     overflow: hidden;
     transition: max-height var(--manga-grid-timer) ease-in-out, border var(--manga-grid-timer) ease-in-out, box-shadow var(--manga-grid-timer) ease-in-out;
     border: var(--border) solid rgb(var(--color-blue));
 }
-.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+3) {
+.favourites.preview .favourites-wrap.manga .favourite.media:nth-child(n+9) {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity var(--manga-grid-timer) ease-in-out, transform var(--manga-grid-timer) ease-in-out;
@@ -186,9 +186,9 @@ body:has(.favourites.preview .favourites-wrap.manga:hover) .overview div.favouri
     transform: translateY(40px);
 }
 .favourites.preview .favourites-wrap.manga:hover {
-    max-height: 630px !important;
+    max-height: 900px !important;
 }
-.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(n+3) {
+.favourites.preview .favourites-wrap.manga:hover .favourite.media:nth-child(n+9) {
     opacity: 1;
     transform: translateY(0);
     filter: var(--cover-saturation);
@@ -234,7 +234,7 @@ body:has(.favourites.preview .favourites-wrap.characters:hover) .overview div.fa
 }
 
 .favourites.preview .favourites-wrap.characters {
-    max-height: 305px;
+    max-height: 420px;
     overflow: hidden;
     transition: max-height var(--characters-grid-timer) ease-in-out, border var(--characters-grid-timer) ease-in-out, box-shadow var(--characters-grid-timer) ease-in-out;
     border: var(--border) solid rgb(var(--color-blue));
@@ -252,7 +252,7 @@ body:has(.favourites.preview .favourites-wrap.characters:hover) .overview div.fa
     transform: translateY(60px);
 }
 .favourites.preview .favourites-wrap.characters:hover {
-    max-height: 680px !important;
+    max-height: 900px !important;
 }
 .favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+9) {
     opacity: 1;
@@ -300,7 +300,7 @@ body:has(.favourites.preview .favourites-wrap.staff:hover) .overview div.favouri
 }
 
 .favourites.preview .favourites-wrap.staff {
-    max-height: 305px;
+    max-height: 420px;
     overflow: hidden;
     transition: max-height var(--staff-grid-timer) ease-in-out, border var(--staff-grid-timer) ease-in-out, box-shadow var(--staff-grid-timer) ease-in-out;
     border: var(--border) solid rgb(var(--color-blue));
@@ -312,7 +312,7 @@ body:has(.favourites.preview .favourites-wrap.staff:hover) .overview div.favouri
     pointer-events: none;
 }
 .favourites.preview .favourites-wrap.staff:hover {
-    max-height: 420px !important;
+    max-height: 900px !important;
 }
 .favourites.preview .favourites-wrap.staff:hover .favourite.staff:nth-child(n+9) {
     opacity: 1;
@@ -348,7 +348,7 @@ body:has(.favourites.preview .favourites-wrap.staff:hover) .overview div.favouri
     text-align: center;
     align-content: center;
     position: relative;
-    color: transparent;
+    color: rgb(var(--color-text));
     margin-bottom: 12px !important;
     box-shadow: none !important;
 }
@@ -395,9 +395,7 @@ body:has(.favourites.preview .favourites-wrap.staff:hover) .overview div.favouri
 .overview .favourite.studio {
     width: 376px !important;
 }
-.overview .favourite.studio::after, .favourites .favourite.studio::after {
-    all: unset !important;
-}
+
 
 /*--- Section Headers for Favourites ---*/
 .overview div.favourites:nth-child(4) > h2:nth-child(1) {
