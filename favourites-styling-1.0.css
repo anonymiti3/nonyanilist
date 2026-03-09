@@ -1,0 +1,298 @@
+/*--- Favourites Grid Layout (Studios excluded) ---*/
+.favourites.preview .favourites-wrap:not(.favourites.preview .favourites-wrap.studios) {
+    position: relative;
+    display: grid !important;
+    grid-gap: 12px !important;
+    column-gap: 12px !important;
+    grid-template-columns: repeat(4, 85px) !important;
+    grid-template-rows: unset !important;  
+    grid-auto-rows: minmax(120px, auto) !important; 
+    padding: 0 !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 40px !important;
+    background: var(--foreground) !important;
+    justify-content: center !important;
+    width: 408px !important;
+}
+.favourites.preview .favourites-wrap a.favourite:not(.favourites.preview .favourites-wrap.studios a.favourite) {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 60px;
+}
+
+/*--- Global Favourite Hover Transitions (with backup box-shadow that takes --color-blue) ---*/
+.favourites a.favourite {
+    filter: var(--cover-saturation);
+    transition: all var(--master-transition-timer) ease-in-out;
+    background-size: 100% !important;
+    background-color: transparent !important;
+}
+
+.favourites a.favourite:hover {
+    box-shadow: var(--box-shadow) color-mix(in srgb,rgb(var(--color-blue)) var(--box-shadow-mix), white);
+    background-size: var(--background-zoom) !important;
+    filter: var(--cover-saturation-hover);
+}
+
+.favourites.preview a.favourite {
+    height: unset !important;
+}
+/*--- Hide Favs Until Hover Grid Styling ---*/
+
+@keyframes arrowfloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(var(--arrow-float));
+    }
+}
+
+@keyframes enablePointerEvents {
+    to { pointer-events: auto; }
+}
+
+/*════════ GLOBAL GRID STANDARDIZATION (Fixes overlap) ════════*/
+
+.favourites-wrap.anime,
+.favourites-wrap.manga,
+.favourites-wrap.characters,
+.favourites-wrap.staff{
+    display:grid !important;
+    grid-template-columns:repeat(5,1fr);
+    grid-auto-rows:85px;
+    gap:6px;
+    align-items:start;
+}
+
+.favourites-wrap.anime .favourite,
+.favourites-wrap.manga .favourite,
+.favourites-wrap.characters .favourite,
+.favourites-wrap.staff .favourite{
+    width:100%;
+    height:100%;
+}
+
+/*════════ Anime Grid ════════*/
+
+.overview div.favourites:nth-child(4) > h2:nth-child(1)::before{
+    content:"";
+    position:absolute;
+    top:364px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:12px;
+    background-image:url("https://i.imgur.com/TfoigpS.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    visibility:visible;
+    z-index:5;
+    animation:arrowfloat 1.8s linear infinite;
+    opacity:1;
+    transition:opacity var(--anime-grid-timer) ease-in-out;
+}
+
+body:has(.favourites.preview .favourites-wrap.anime:hover) .overview div.favourites:nth-child(4) > h2:nth-child(1)::before{
+    opacity:0;
+}
+
+.favourites.preview .favourites-wrap.anime{
+    max-height:460px;
+    overflow:hidden;
+    transition:max-height var(--anime-grid-timer) ease-in-out,border var(--anime-grid-timer) ease-in-out,box-shadow var(--anime-grid-timer) ease-in-out;
+    border:var(--border) solid rgb(var(--color-blue));
+}
+
+.favourites.preview .favourites-wrap.anime:hover{
+    max-height:1200px !important;
+    overflow:visible;
+}
+
+/*════════ Manga Grid ════════*/
+
+.overview div.favourites:nth-child(5) > h2:nth-child(1)::before{
+    content:"";
+    position:absolute;
+    top:364px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:12px;
+    background-image:url("https://i.imgur.com/TfoigpS.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    visibility:visible;
+    z-index:5;
+    animation:arrowfloat 1.8s linear infinite;
+    opacity:1;
+    transition:opacity var(--manga-grid-timer) ease-in-out;
+}
+
+body:has(.favourites.preview .favourites-wrap.manga:hover) .overview div.favourites:nth-child(5) > h2:nth-child(1)::before{
+    opacity:0;
+}
+
+.favourites.preview .favourites-wrap.manga{
+    max-height:460px;
+    overflow:hidden;
+    transition:max-height var(--manga-grid-timer) ease-in-out,border var(--manga-grid-timer) ease-in-out,box-shadow var(--manga-grid-timer) ease-in-out;
+    border:var(--border) solid rgb(var(--color-blue));
+}
+
+.favourites.preview .favourites-wrap.manga:hover{
+    max-height:780px !important;
+}
+
+/*════════ Characters Grid ════════*/
+
+.overview div.favourites:nth-child(6) > h2:nth-child(1)::before{
+    content:"";
+    position:absolute;
+    top:302px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:12px;
+    background-image:url("https://i.imgur.com/TfoigpS.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    visibility:visible;
+    z-index:5;
+    animation:arrowfloat 1.8s linear infinite;
+    opacity:1;
+    transition:opacity var(--characters-grid-timer) ease-in-out;
+}
+
+body:has(.favourites.preview .favourites-wrap.characters:hover) .overview div.favourites:nth-child(6) > h2:nth-child(1)::before{
+    opacity:0;
+}
+
+.favourites.preview .favourites-wrap.characters{
+    max-height:360px;
+    overflow:hidden;
+    transition:max-height var(--characters-grid-timer) ease-in-out,border var(--characters-grid-timer) ease-in-out,box-shadow var(--characters-grid-timer) ease-in-out;
+    border:var(--border) solid rgb(var(--color-blue));
+}
+
+.favourites.preview .favourites-wrap.characters:hover{
+    max-height:780px !important;
+}
+
+/*════════ Staff Grid ════════*/
+
+.overview div.favourites:nth-child(7) > h2:nth-child(1)::before{
+    content:"";
+    position:absolute;
+    top:302px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:12px;
+    background-image:url("https://i.imgur.com/TfoigpS.png");
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    visibility:visible;
+    z-index:5;
+    animation:arrowfloat 1.8s linear infinite;
+    opacity:1;
+    transition:opacity var(--staff-grid-timer) ease-in-out;
+}
+
+body:has(.favourites.preview .favourites-wrap.staff:hover) .overview div.favourites:nth-child(7) > h2:nth-child(1)::before{
+    opacity:0;
+}
+
+.favourites.preview .favourites-wrap.staff{
+    max-height:360px;
+    overflow:hidden;
+    transition:max-height var(--staff-grid-timer) ease-in-out,border var(--staff-grid-timer) ease-in-out,box-shadow var(--staff-grid-timer) ease-in-out;
+    border:var(--border) solid rgb(var(--color-blue));
+}
+
+.favourites.preview .favourites-wrap.staff:hover{
+    max-height:780px !important;
+}
+
+/*════════ Studios  ════════*/
+
+.favourites.preview .favourites-wrap.studios{
+    background:var(--foreground)!important;
+    margin-top:-5px;
+    border:var(--border) solid rgb(var(--color-blue));
+    transition:border var(--master-transition-timer) ease-in-out,box-shadow var(--master-transition-timer) ease-in-out;
+}
+
+.overview .favourite.studio{
+    min-height:150px;
+    font-size:1.8rem;
+    display:grid;
+    grid-gap:10px;
+    padding:2px!important;
+    text-align:center;
+    align-content:center;
+    position:relative;
+    color:rgb(var(--color-text));
+    margin-bottom:12px!important;
+    box-shadow:none!important;
+}
+
+/*--- Stuff to Specifically Fix Automail 5-Width Fuckery For Studios ---*/
+.overview .favourites > .favourites-wrap.studios {
+    column-gap: 25px !important;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    height: 355px !important;
+    row-gap: 48px !important;
+    width: 408px !important;
+    padding: 15px !important;
+    padding-top: 20px !important;
+} 
+.overview .favourite.studio {
+    width: 376px !important;
+}
+
+
+/*--- Section Headers for Favourites ---*/
+.overview div.favourites:nth-child(4) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(5) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(6) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(6) > h2:nth-child(1)::after {
+    top: 11px;
+    right: 96px;
+}
+.overview div.favourites:nth-child(7) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(7) > h2:nth-child(1)::after {
+    top: 11px;
+    right: 116px;
+}
+.overview div.favourites:nth-child(8) > h2:nth-child(1) {
+    position: relative;
+    visibility: hidden;
+}
+.overview div.favourites:nth-child(8) > h2:nth-child(1)::after {
+    top: 11px;
+    right: 149px;
+}
+/*--- Fix Margins for Titles/Wraps ---*/
+.overview div.favourites h2:not(.favourites:nth-child(4) > h2:nth-child(1)) {
+    margin-top: -25px;
+}
