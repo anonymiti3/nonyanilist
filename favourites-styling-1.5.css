@@ -255,11 +255,11 @@ body:has(.favourites.preview .favourites-wrap.manga:hover)
 }
 
 /*════════ Characters Grid ════════*/
-
 :root {
-    --characters-grid-timer: 0.6s; /* Slower animation for smoother reveal */
+    --characters-grid-timer: 0.6s; /* slower animation for smoother reveal */
 }
 
+/* Arrow under section header */
 .overview div.favourites:nth-child(6) > h2:nth-child(1)::before {
     content: "";
     position: absolute;
@@ -272,95 +272,71 @@ body:has(.favourites.preview .favourites-wrap.manga:hover)
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    visibility: visible;
     z-index: 5;
     animation: arrowfloat 1.8s linear infinite;
-    animation-delay: 0s !important;
     opacity: 1;
     transition: opacity var(--characters-grid-timer) ease-in-out;
 }
 
+/* Hide arrow on hover */
 body:has(.favourites.preview .favourites-wrap.characters:hover) 
 .overview div.favourites:nth-child(6) > h2:nth-child(1)::before {
     opacity: 0;
 }
 
+/* Container base style */
 .favourites.preview .favourites-wrap.characters {
-    max-height: 305px;
-    overflow: hidden;
-    transition: max-height var(--characters-grid-timer) ease-in-out,
-                border var(--characters-grid-timer) ease-in-out,
+    overflow: visible;       /* allow all characters to show */
+    transition: border var(--characters-grid-timer) ease-in-out,
                 box-shadow var(--characters-grid-timer) ease-in-out;
     border: var(--border) solid rgb(var(--color-blue));
 }
 
+/* Base state: hide all beyond 8th */
 .favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9) {
     opacity: 0;
     transform: translateY(20px);
+    pointer-events: none;
     transition: opacity var(--characters-grid-timer) ease-in-out,
                 transform var(--characters-grid-timer) ease-in-out;
-    pointer-events: none;
 }
 
+/* Optional cascading translateY effect */
 .favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+13) { transform: translateY(40px); }
 .favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+17) { transform: translateY(60px); }
 .favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+21) { transform: translateY(80px); }
 
-.favourites.preview .favourites-wrap.characters:hover {
-    max-height: 1165px !important;
-}
-
+/* Hover: reveal characters */
 .favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+9) {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
     filter: var(--cover-saturation);
     background-size: 100% !important;
-    pointer-events: auto;
-    transition: opacity var(--characters-grid-timer) ease-in-out,
-                transform var(--characters-grid-timer) ease-in-out,
-                filter var(--master-transition-timer) ease-in-out,
-                box-shadow var(--master-transition-timer) ease-in-out,
-                background-size var(--master-transition-timer) ease-in-out;
-    animation: enablePointerEvents 0s calc(var(--characters-grid-timer) - 0.075s) forwards;
+    transition: 
+        opacity var(--characters-grid-timer) ease-in-out,
+        transform var(--characters-grid-timer) ease-in-out,
+        filter var(--master-transition-timer) ease-in-out,
+        box-shadow var(--master-transition-timer) ease-in-out,
+        background-size var(--master-transition-timer) ease-in-out;
 }
 
-/* staggered reveal  */
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(9)  { transition-delay: 0s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(10) { transition-delay: 0.05s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(11) { transition-delay: 0.10s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(12) { transition-delay: 0.15s; }
+/* Staggered reveal using groups of 4, scalable */
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+9):nth-child(-n+12)  { transition-delay: 0s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+13):nth-child(-n+16) { transition-delay: 0.2s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+17):nth-child(-n+20) { transition-delay: 0.4s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+21):nth-child(-n+24) { transition-delay: 0.6s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+25):nth-child(-n+28) { transition-delay: 0.8s; }
+.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(n+29):nth-child(-n+32) { transition-delay: 1s; }
 
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(13) { transition-delay: 0.20s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(14) { transition-delay: 0.25s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(15) { transition-delay: 0.30s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(16) { transition-delay: 0.35s; }
-
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(17) { transition-delay: 0.40s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(18) { transition-delay: 0.45s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(19) { transition-delay: 0.50s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(20) { transition-delay: 0.55s; }
-
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(21) { transition-delay: 0.60s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(22) { transition-delay: 0.65s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(23) { transition-delay: 0.70s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(24) { transition-delay: 0.75s; }
-
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(25) { transition-delay: 0.80s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(26) { transition-delay: 0.85s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(27) { transition-delay: 0.90s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(28) { transition-delay: 0.95s; }
-
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(29) { transition-delay: 1.00s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(30) { transition-delay: 1.05s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(31) { transition-delay: 1.10s; }
-.favourites.preview .favourites-wrap.characters:hover .favourite.character:nth-child(32) { transition-delay: 1.15s; }
-
+/* Hover zoom effect on individual character */
 .favourites.preview .favourites-wrap.characters .favourite.character:nth-child(n+9):hover {
     background-size: var(--background-zoom) !important;
     filter: var(--cover-saturation-hover);
-    transition: background-size var(--master-transition-timer) ease-in-out,
-                filter var(--master-transition-timer) ease-in-out,
-                box-shadow var(--master-transition-timer) ease-in-out;
+    transition: 
+        background-size var(--master-transition-timer) ease-in-out,
+        filter var(--master-transition-timer) ease-in-out,
+        box-shadow var(--master-transition-timer) ease-in-out;
 }
 
 /*════════ Staff Grid ════════*/
